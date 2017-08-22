@@ -41,7 +41,7 @@ public class BookShelf {
       return "You have no books.";
     } else {
       return "You have " + books.size() + " books. \n " +
-          "Earliest released: " + queryForPublish().get(books.size()-1) + " \n " +
+          "Earliest released: " + queryForPublish().get(books.size() - 1) + " \n " +
           "Latest released: " + queryForPublish().get(0) + " \n " +
           "Favourite author: " + getFavouriteAuthor();
     }
