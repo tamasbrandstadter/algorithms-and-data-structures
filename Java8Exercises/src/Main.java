@@ -1,6 +1,7 @@
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class Main {
   public static void main(String[] args) {
@@ -58,6 +59,12 @@ public class Main {
         .count();
     System.out.println("Number of names begining with 'A' is: " + count);
 
+    //peek is used for debugging if necessary, it will be evaluated after a terminal operation
+    List<String> myList = names2.stream()
+        .map(name -> name.substring(0, 1).toUpperCase() + name.substring(1))
+        .peek(System.out::println)
+        .sorted(String::compareTo)
+        .collect(Collectors.toList());
   }
 
   private static String everySecondCharacter(Function<String, String> inputFunction, String inputString) {
