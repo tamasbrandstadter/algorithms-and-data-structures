@@ -48,13 +48,19 @@ public class Main {
 
     List<String> names2 = Arrays.asList("Amelia", "Olivia", "emily", "Isla", "Ava", "oliver", "Jack", "Charlie", "harry", "Jacob");
     names2.stream()
-        .map(name -> name.substring(0, 1) + name.substring(1))
+        .map(name -> name.substring(0, 1).toUpperCase() + name.substring(1))
         .sorted(String::compareTo)
         .forEach(System.out::println);
 
+    long count = names2.stream()
+        .map(name -> name.substring(0, 1).toUpperCase() + name.substring(1))
+        .filter(name -> name.startsWith("A"))
+        .count();
+    System.out.println("Number of names begining with 'A' is: " + count);
+
   }
 
-  public static String everySecondCharacter(Function<String, String> inputFunction, String inputString) {
+  private static String everySecondCharacter(Function<String, String> inputFunction, String inputString) {
     return inputFunction.apply(inputString);
   }
 }
