@@ -9,7 +9,7 @@ public class Main {
     for (int i = 0; i < nums.length; i++) {
       for (int j = 1; j >= i; j++) {
         if (nums[i] + nums[j] == target) {
-          return new int[]{i, j};
+          return new int[] {i, j};
         }
       }
     }
@@ -37,5 +37,10 @@ public class Main {
       x -= x + x;
     }
     return String.valueOf(x).equals(new StringBuilder(String.valueOf(x)).reverse().toString());
+  }
+
+  //Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+  public static int strStr(String haystack, String needle) {
+    return haystack.contains(needle) ? haystack.indexOf(needle) : -1;
   }
 }
