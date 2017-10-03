@@ -1,4 +1,4 @@
 public interface TwoElementPredicate<T> {
 
-  boolean myMethod(T s1, T s2);
+  boolean execute(T s1, T s2);
 }

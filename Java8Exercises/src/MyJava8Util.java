@@ -59,7 +59,7 @@ public class MyJava8Util {
   }
 
   private static <T> T betterEntry(T s1, T s2, TwoElementPredicate<T> twoElementPredicate) {
-    return twoElementPredicate.myMethod(s1, s2) ? s1 : s2;
+    return twoElementPredicate.execute(s1, s2) ? s1 : s2;
   }
 
   private static <T> List<T> allMatches(List<T> inputList, Predicate<T> inputPredicate) {
