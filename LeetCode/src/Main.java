@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class Main {
   public static void main(String[] args) {
@@ -93,5 +94,13 @@ public class Main {
         .filter(n -> n % 2 == 1)
         .sum();
   }
+
+  //Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.
+  private static int getSum(int a, int b) {
+    return IntStream.of(a,b).sum();
+    //other solution would be:
+    //return b == 0 ? a : getSum(a ^ b, (a & b) << 1);
+  }
 }
+
 
