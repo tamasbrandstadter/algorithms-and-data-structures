@@ -60,16 +60,38 @@ public class Main {
 
     int num = 0;
     int prev = 0;
-    for (int i = s.length()-1; i >= 0; i--) {
+    for (int i = s.length() - 1; i >= 0; i--) {
       int temp = romanNumberMap.get(s.charAt(i));
       if (prev <= temp) {
         num += temp;
-        prev = temp;
       } else {
         num -= temp;
-        prev = temp;
       }
+      prev = temp;
     }
     return num;
   }
+
+  //Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.
+  //For example:
+  //Given num = 38, the process is like: 3 + 8 = 11, 1 + 1 = 2. Since 2 has only one digit, return it.
+  private static int addDigits(int num) {
+    int sum = 0;
+    while (num > 0) {
+      sum = sum + num % 10;
+      num = num / 10;
+    }
+    //recursive call
+    sum = (sum < 10) ? sum : addDigits(sum);
+    return sum;
+  }
+
+  //How do I find the sum of all odd digits of user input numeric string?
+  private static int sumOfOddNumbers(String input) {
+    return input.chars()
+        .map(n -> n - '0')
+        .filter(n -> n % 2 == 1)
+        .sum();
+  }
 }
+
