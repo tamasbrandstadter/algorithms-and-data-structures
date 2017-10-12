@@ -2,9 +2,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
+import static java.lang.StrictMath.sqrt;
+import static java.util.stream.LongStream.range;
+import static java.util.stream.LongStream.rangeClosed;
+
 public class Main {
   public static void main(String[] args) {
-
   }
 
   //Given an array of integers, return indices of the two numbers such that they add up to a specific target.
@@ -100,6 +103,18 @@ public class Main {
     return IntStream.of(a,b).sum();
     //other solution would be:
     //return b == 0 ? a : getSum(a ^ b, (a & b) << 1);
+  }
+
+  //Count the number of primes until the given number.
+  private static long countPrimes(int max) {
+    return range(1, max)
+        .parallel()
+        .filter(Main::isPrime)
+        .count();
+  }
+
+  private static boolean isPrime(long n) {
+    return n > 1 && rangeClosed(2, (long) sqrt(n)).noneMatch(divisor -> n % divisor == 0);
   }
 }
 
