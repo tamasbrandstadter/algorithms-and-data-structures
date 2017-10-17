@@ -100,8 +100,9 @@ public class Main {
 
   //Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.
   private static int getSum(int a, int b) {
-    return IntStream.of(a,b).sum();
-    //other solution would be:
+    return IntStream.of(a, b).sum();
+    //other solutions would be:
+    //return Math.addExact(a, b);
     //return b == 0 ? a : getSum(a ^ b, (a & b) << 1);
   }
 
@@ -115,6 +116,22 @@ public class Main {
 
   private static boolean isPrime(long n) {
     return n > 1 && rangeClosed(2, (long) sqrt(n)).noneMatch(divisor -> n % divisor == 0);
+  }
+
+  private static int hammingDistance(int x, int y) {
+    String binaryString = String.format("%" + Integer.toString(31) + "s", Integer.toBinaryString(x)).replace(" ", "0");
+    String binaryString2 = String.format("%" + Integer.toString(31) + "s", Integer.toBinaryString(y)).replace(" ", "0");
+    int count = 0;
+
+    for (int i = 0; i < binaryString.length(); i++) {
+      if (binaryString.charAt(i) != binaryString2.charAt(i)) {
+        count++;
+      }
+    }
+    return count;
+
+    //proper solution would be:
+    //return Integer.bitCount(x ^ y);
   }
 }
 
