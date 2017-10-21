@@ -1,5 +1,8 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.lang.StrictMath.sqrt;
@@ -132,6 +135,55 @@ public class Main {
 
     //proper solution would be:
     //return Integer.bitCount(x ^ y);
+  }
+
+  //Given an array and a value, remove all instances of that value in place and return the new length.
+  //Do not allocate extra space for another array, you must do this in place with constant memory.
+  //The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+  //Given input array nums = [3,2,2,3], val = 3
+  //Your function should return length = 2, with the first two elements of nums being 2.
+  private static int removeElement(int[] nums, int val) {
+    int m = 0;
+
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] != val) {
+        nums[m] = nums[i];
+        m++;
+      }
+    }
+    return m;
+  }
+
+  //solution of previous example would be this, if array elements didn't matter
+  private static int removeElement2(int[] nums, int val) {
+    return (int) IntStream.of(nums).filter(value -> value != val).count();
+  }
+
+  //Write a program that outputs the string representation of numbers from 1 to n.
+  //But for multiples of three it should output “Fizz” instead of the number and for the multiples of five output “Buzz”.
+  //For numbers which are multiples of both three and five output “FizzBuzz”.
+  private static List<String> fizzBuzz(int n) {
+    List<String> fizzBuzzList = new ArrayList<>();
+
+    for (int i = 1; i <= n; i++) {
+      if (i % 15 == 0) {
+        fizzBuzzList.add("FizzBuzz");
+      } else if (i % 3 == 0) {
+        fizzBuzzList.add("Fizz");
+      } else if (i % 5 == 0) {
+        fizzBuzzList.add("Buzz");
+      } else {
+        fizzBuzzList.add(String.valueOf(i));
+      }
+    }
+    return fizzBuzzList;
+  }
+
+  //partly solution with stream
+  private static List<String> fizzBuzz2(int n) {
+    return rangeClosed(1, n)
+        .filter(value -> value % 3 == 0).mapToObj(value -> "Fizz")
+        .collect(Collectors.toList());
   }
 }
 
