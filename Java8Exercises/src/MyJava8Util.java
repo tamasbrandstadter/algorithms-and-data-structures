@@ -3,6 +3,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MyJava8Util {
   public static void main(String[] args) {
@@ -81,6 +83,23 @@ public class MyJava8Util {
       returnList.add(myFunction.apply(s));
     }
     return returnList;
+  }
+
+  private static double getAverage(List<Double> list) {
+    return list.stream().mapToDouble(n -> n).average().orElseThrow(RuntimeException::new);
+  }
+
+  private static List<Double> generateList(int size) {
+    return Stream.generate(Math::random).limit(size).collect(Collectors.toList());
+  }
+
+  private static List<Double> cutOff(List<Double> list, double cutOff) {
+    list.removeIf(n -> n < cutOff);
+    return list;
+  }
+
+  private static <T, S> List<S> genericMethod(List<T> tList, Function<T, S> function) {
+    return tList.stream().map(function).collect(Collectors.toList());
   }
 }
 

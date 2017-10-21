@@ -9,7 +9,13 @@ public class Car {
     return price;
   }
 
-  public void setPrice(int price) {
-    this.price = price;
+  public int setPrice() {
+    this.price = 500;
+    return price;
+  }
+
+  public void doubleValue() {
+    this.price *= 2;
   }
 }
+
