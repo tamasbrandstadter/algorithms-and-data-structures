@@ -211,21 +211,47 @@ public class Main {
     }
     int x = 0;
     int y = 0;
+
     for (int i = 0; i < moves.length(); i++) {
       if (moves.charAt(i) == 'U') {
         y += -1;
-      }
-      else if (moves.charAt(i) == 'D') {
+      } else if (moves.charAt(i) == 'D') {
         y += 1;
-      }
-      else if (moves.charAt(i) == 'L') {
+      } else if (moves.charAt(i) == 'L') {
         x += -1;
-      }
-      else if (moves.charAt(i) == 'R') {
+      } else if (moves.charAt(i) == 'R') {
         x += 1;
       }
     }
     return x == 0 && y == 0;
+  }
+
+  //Invert a binary tree.
+  class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int x) {
+      val = x;
+    }
+  }
+
+  //solution:
+  private static TreeNode invertTree(TreeNode root) {
+    if (root == null) {
+      return root;
+    }
+
+    TreeNode temp = root.right;
+    root.right = root.left;
+    root.left = temp;
+
+    invertTree(root.left);
+
+    invertTree(root.right);
+
+    return root;
   }
 }
 
