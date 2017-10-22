@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -261,5 +262,21 @@ public class Main {
     return (int) ((Math.sqrt(1 + 8.0 * n) - 1) / 2);
   }
 
+  //Given an array of integers, every element appears twice except for one. Find that single one.
+  //Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+  private static int singleNumber(int[] nums) {
+    if (nums.length == 1) {
+      return nums[0];
+    }
+
+    Arrays.sort(nums);
+
+    for (int i = 0; i < nums.length - 1; i+=2) {
+      if (nums[i] != nums[i + 1]) {
+        return nums[i];
+      }
+    }
+    return nums[nums.length-1];
+  }
 }
 
