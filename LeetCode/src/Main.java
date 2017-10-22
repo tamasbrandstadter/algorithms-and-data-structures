@@ -179,12 +179,53 @@ public class Main {
     return fizzBuzzList;
   }
 
-  //partly solution with stream
+  //partial solution with stream
   private static List<String> fizzBuzz2(int n) {
     return rangeClosed(1, n)
         .filter(value -> value % 3 == 0).mapToObj(value -> "Fizz")
         .collect(Collectors.toList());
   }
-}
 
+  //Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.
+  //Do not allocate extra space for another array, you must do this in place with constant memory.
+  //For example given input array nums = [1,1,2],
+  //Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively. It doesn't matter what you leave beyond the new length.
+  private static int removeDuplicates(int[] nums) {
+    int i = 0;
+    for (int j = 1; j < nums.length; j++) {
+      if (nums[j] != nums[i]) {
+        i++;
+        nums[i] = nums[j];
+      }
+    }
+    return i + 1;
+  }
+
+  //Initially, there is a Robot at position (0, 0). Given a sequence of its moves, judge if this robot makes a circle,
+  //which means it moves back to the original place.
+  //The move sequence is represented by a string. And each move is represent by a character. The valid robot moves are R (Right), L (Left), U (Up) and D (down).
+  //The output should be true or false representing whether the robot makes a circle.
+  private static boolean judgeCircle(String moves) {
+    if (moves.length() % 2 != 0) {
+      return false;
+    }
+    int x = 0;
+    int y = 0;
+    for (int i = 0; i < moves.length(); i++) {
+      if (moves.charAt(i) == 'U') {
+        y += -1;
+      }
+      else if (moves.charAt(i) == 'D') {
+        y += 1;
+      }
+      else if (moves.charAt(i) == 'L') {
+        x += -1;
+      }
+      else if (moves.charAt(i) == 'R') {
+        x += 1;
+      }
+    }
+    return x == 0 && y == 0;
+  }
+}
 
