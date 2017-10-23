@@ -358,5 +358,50 @@ public class Main {
     }
     return sum;
   }
+
+  //Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+  //You may assume no duplicates in the array.
+  private static int searchInsert(int[] nums, int target) {
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] >= target) {
+        return i;
+      } else if (nums[nums.length - 1] < target) {
+        return nums.length;
+      }
+    }
+    return -1;
+  }
+
+  //previous exercise better solution would be:
+  public static int searchInsert2(int[] nums, int target) {
+    int low = 0, high = nums.length;
+    while (low < high) {
+      int mid = low + (high - low) / 2;
+      if (nums[mid] < target)
+        low = mid + 1;
+      else
+        high = mid;
+    }
+    return low;
+  }
+
+  //Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
+  private ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    if (l1 == null) {
+      return l2;
+    }
+    if (l2 == null) {
+      return l1;
+    }
+
+    //recursive calls:
+    if (l1.val < l2.val) {
+      l1.next = mergeTwoLists(l1.next, l2);
+      return l1;
+    } else {
+      l2.next = mergeTwoLists(l1, l2.next);
+      return l2;
+    }
+  }
 }
 
