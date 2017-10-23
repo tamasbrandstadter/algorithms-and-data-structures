@@ -299,14 +299,15 @@ public class Main {
     return count;
 
     //O(n)time and O(1)space solution would be:
-    //int total = 0, n = nums.length;
-    //    for (int j=0;j<32;j++) {
+    //    int sum = 0;
+    //    for (int i = 0; i < 32; i++) {
     //      int bitCount = 0;
-    //      for (int i=0;i<n;i++)
-    //        bitCount += (nums[i] >> j) & 1;
-    //      total += bitCount*(n - bitCount);
+    //      for (int j = 0; j < nums.length; j++) {
+    //        bitCount += ((nums[i] >> j) & 1);
+    //      }
+    //      sum += bitCount * (nums.length - bitCount);
     //    }
-    //    return total;
+    //    return sum;
   }
 }
 
