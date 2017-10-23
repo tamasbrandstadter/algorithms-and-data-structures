@@ -122,6 +122,8 @@ public class Main {
     return n > 1 && rangeClosed(2, (long) sqrt(n)).noneMatch(divisor -> n % divisor == 0);
   }
 
+  //The Hamming distance between two integers is the number of positions at which the corresponding bits are different.
+  //Given two integers x and y, calculate the Hamming distance.
   private static int hammingDistance(int x, int y) {
     String binaryString = String.format("%" + Integer.toString(31) + "s", Integer.toBinaryString(x)).replace(" ", "0");
     String binaryString2 = String.format("%" + Integer.toString(31) + "s", Integer.toBinaryString(y)).replace(" ", "0");
@@ -155,7 +157,7 @@ public class Main {
     return m;
   }
 
-  //solution of previous example would be this, if array elements didn't matter
+  //solution of previous example might be this, if array elements didn't matter
   private static int removeElement2(int[] nums, int val) {
     return (int) IntStream.of(nums).filter(value -> value != val).count();
   }
@@ -248,8 +250,8 @@ public class Main {
     root.right = root.left;
     root.left = temp;
 
+    //recursions
     invertTree(root.left);
-
     invertTree(root.right);
 
     return root;
@@ -271,12 +273,40 @@ public class Main {
 
     Arrays.sort(nums);
 
-    for (int i = 0; i < nums.length - 1; i+=2) {
+    for (int i = 0; i < nums.length - 1; i += 2) {
       if (nums[i] != nums[i + 1]) {
         return nums[i];
       }
     }
-    return nums[nums.length-1];
+    return nums[nums.length - 1];
+  }
+
+  //Write a function that takes an unsigned integer and returns the number of ’1' bits it has (also known as the Hamming weight).
+  //For example, the 32-bit integer ’11' has binary representation 00000000000000000000000000001011, so the function should return 3.
+  private static int hammingWeight(int n) {
+    return Integer.bitCount(n);
+  }
+
+  //The Hamming distance between two integers is the number of positions at which the corresponding bits are different.
+  //Now your job is to find the total Hamming distance between all pairs of the given numbers.
+  private static int totalHammingDistance(int[] nums) {
+    int count = 0;
+    for (int i = 0; i < nums.length - 1; i++) {
+      for (int j = i + 1; j < nums.length; j++) {
+        count += Integer.bitCount(nums[i] ^ nums[j]);
+      }
+    }
+    return count;
+
+    //O(n)time and O(1)space solution would be:
+    //int total = 0, n = nums.length;
+    //    for (int j=0;j<32;j++) {
+    //      int bitCount = 0;
+    //      for (int i=0;i<n;i++)
+    //        bitCount += (nums[i] >> j) & 1;
+    //      total += bitCount*(n - bitCount);
+    //    }
+    //    return total;
   }
 }
 
