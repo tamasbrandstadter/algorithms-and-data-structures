@@ -346,5 +346,17 @@ public class Main {
 
     return null;
   }
+
+  //Given an integer n, return the number of trailing zeroes in n!.
+  private static int trailingZeroes(int n) {
+    int sum = 0;
+    int remainder = 0;
+    while (n > remainder) {
+      sum += n / 5;
+      remainder = n % 5;
+      n = n / 5;
+    }
+    return sum;
+  }
 }
 
