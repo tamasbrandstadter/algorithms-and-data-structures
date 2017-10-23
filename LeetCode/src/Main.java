@@ -107,6 +107,7 @@ public class Main {
   //Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.
   private static int getSum(int a, int b) {
     return IntStream.of(a, b).sum();
+
     //other solutions would be:
     //return Math.addExact(a, b);
     //return b == 0 ? a : getSum(a ^ b, (a & b) << 1);
@@ -137,9 +138,11 @@ public class Main {
       }
     }
     return count;
+  }
 
-    //proper solution would be:
-    //return Integer.bitCount(x ^ y);
+  //Proper solution for previous exercise would be:
+  private static int hammingDistance2(int x, int y) {
+    return Integer.bitCount(x ^ y);
   }
 
   //Given an array and a value, remove all instances of that value in place and return the new length.
@@ -299,17 +302,19 @@ public class Main {
       }
     }
     return count;
+  }
 
-    //O(n)time and O(1)space solution would be:
-    //    int sum = 0;
-    //    for (int i = 0; i < 32; i++) {
-    //      int bitCount = 0;
-    //      for (int j = 0; j < nums.length; j++) {
-    //        bitCount += ((nums[i] >> j) & 1);
-    //      }
-    //      sum += bitCount * (nums.length - bitCount);
-    //    }
-    //    return sum;
+  //Previous exercise O(n)time and O(1)space solution would be:
+  private static int totalHammingDistance2(int[] nums) {
+    int sum = 0;
+    for (int i = 0; i < 32; i++) {
+      int bitCount = 0;
+      for (int j = 0; j < nums.length; j++) {
+        bitCount += ((nums[i] >> j) & 1);
+      }
+      sum += bitCount * (nums.length - bitCount);
+    }
+    return sum;
   }
 
   //Write a program to find the node at which the intersection of two singly linked lists begins.
@@ -402,6 +407,20 @@ public class Main {
       l2.next = mergeTwoLists(l1, l2.next);
       return l2;
     }
+  }
+
+  //Reverse a singly linked list.
+  private static ListNode reverseList(ListNode head) {
+    return reverseListInt(head, null);
+  }
+
+  private static ListNode reverseListInt(ListNode head, ListNode newHead) {
+    if (head == null) {
+      return newHead;
+    }
+    ListNode next = head.next;
+    head.next = newHead;
+    return reverseListInt(next, head);
   }
 
   //Write a function that takes a string as input and returns the string reversed.
