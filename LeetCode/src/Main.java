@@ -1,8 +1,10 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -230,7 +232,7 @@ public class Main {
   }
 
   //Invert a binary tree.
-  class TreeNode {
+  static class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
@@ -308,6 +310,41 @@ public class Main {
     //      sum += bitCount * (nums.length - bitCount);
     //    }
     //    return sum;
+  }
+
+  //Write a program to find the node at which the intersection of two singly linked lists begins.
+  static class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode(int x) {
+      val = x;
+      next = null;
+    }
+  }
+
+  //solution:
+  private static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    if (headA == null || headB == null) {
+      return null;
+    }
+    Set<ListNode> nodeSet = new HashSet<>();
+
+    ListNode a = headA;
+    while (a != null) {
+      nodeSet.add(a);
+      a = a.next;
+    }
+
+    ListNode b = headB;
+    while (b != null) {
+      if (nodeSet.contains(b)) {
+        return b;
+      }
+      b = b.next;
+    }
+
+    return null;
   }
 }
 
