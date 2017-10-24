@@ -377,7 +377,7 @@ public class Main {
     return -1;
   }
 
-  //previous exercise better solution would be:
+  //Better solution of previous exercise would be:
   public static int searchInsert2(int[] nums, int target) {
     int low = 0, high = nums.length;
     while (low < high) {
@@ -418,14 +418,24 @@ public class Main {
     if (head == null) {
       return newHead;
     }
+
     ListNode next = head.next;
     head.next = newHead;
+
     return reverseListInt(next, head);
   }
 
   //Write a function that takes a string as input and returns the string reversed.
-  private String reverseString(String s) {
+  private static String reverseString(String s) {
     return new StringBuilder(s).reverse().toString();
   }
+
+  //Given an array of integers where 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.
+  //Find all the elements of [1, n] inclusive that do not appear in this array.
+  //Could you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra space.
+  private static List<Integer> disappearedNumbers(int[] nums) {
+    return IntStream.rangeClosed(1, nums.length).filter(i -> IntStream.of(nums).noneMatch(j -> i == j)).boxed().collect(Collectors.toList());
+  }
+
 }
 
