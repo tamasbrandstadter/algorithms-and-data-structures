@@ -113,9 +113,9 @@ public class Main {
     //return b == 0 ? a : getSum(a ^ b, (a & b) << 1);
   }
 
-  //Count the number of primes until the given number.
-  private static long countPrimes(int max) {
-    return range(1, max)
+  //Count the number of prime numbers less than a non-negative number, n.
+  private static int countPrimes(int n) {
+    return (int) range(1, n)
         .parallel()
         .filter(Main::isPrime)
         .count();
@@ -123,6 +123,32 @@ public class Main {
 
   private static boolean isPrime(long n) {
     return n > 1 && rangeClosed(2, (long) sqrt(n)).noneMatch(divisor -> n % divisor == 0);
+  }
+
+  //The Sieve of Eratosthenes uses an extra O(n) memory and its runtime complexity is O(n log log n).
+  private static int countPrimesEfficient(int n) {
+    boolean[] isPrime = new boolean[n];
+    for (int i = 2; i < n; i++) {
+      isPrime[i] = true;
+    }
+    // Loop's ending condition is i * i < n instead of i < sqrt(n)
+    // to avoid repeatedly calling an expensive function sqrt().
+    for (int i = 2; i * i < n; i++) {
+      if (!isPrime[i]) {
+        continue;
+      }
+      for (int j = i * i; j < n; j += i) {
+        isPrime[j] = false;
+      }
+    }
+
+    int count = 0;
+    for (int i = 2; i < n; i++) {
+      if (isPrime[i]) {
+        count++;
+      }
+    }
+    return count;
   }
 
   //The Hamming distance between two integers is the number of positions at which the corresponding bits are different.
