@@ -405,13 +405,16 @@ public class Main {
 
   //Better solution of previous exercise would be:
   public static int searchInsert2(int[] nums, int target) {
-    int low = 0, high = nums.length;
+    int low = 0;
+    int high = nums.length;
+
     while (low < high) {
       int mid = low + (high - low) / 2;
-      if (nums[mid] < target)
+      if (nums[mid] < target) {
         low = mid + 1;
-      else
+      } else {
         high = mid;
+      }
     }
     return low;
   }
@@ -481,5 +484,50 @@ public class Main {
     return IntStream.rangeClosed(1, nums.length).filter(i -> IntStream.of(nums).noneMatch(j -> i == j)).boxed().collect(Collectors.toList());
   }
 
+  //O(n) runtime solution would be marking elements as negative. In this way all the numbers that we have seen will be marked as negative.
+  // In the second iteration, if a value is not marked as negative, it implies we have never seen that index before, so just add it to the return list.
+  private static List<Integer> findDisappearedNumbers(int[] nums) {
+    List<Integer> ret = new ArrayList<>();
+
+    for(int i = 0; i < nums.length; i++) {
+      int val = Math.abs(nums[i]) - 1;
+      if(nums[val] > 0) {
+        nums[val] = -nums[val];
+      }
+    }
+
+    for(int i = 0; i < nums.length; i++) {
+      if(nums[i] > 0) {
+        ret.add(i+1);
+      }
+    }
+    return ret;
+  }
+
+  //Given an array of integers, find if the array contains any duplicates.
+  //Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.
+  private static boolean containsDuplicate(int[] nums) {
+    Set<Integer> set = new HashSet<>(nums.length);
+
+    for (int n : nums) {
+      if (set.contains(n)) {
+        return true;
+      }
+      set.add(n);
+    }
+    return false;
+  }
+
+  //Given an integer, write a function to determine if it is a power of three.
+  private static boolean isPowerOfThree(int n) {
+    if (n < 1) {
+      return false;
+    }
+
+    while (n % 3 == 0) {
+      n /= 3;
+    }
+    return n == 1;
+  }
 }
 
