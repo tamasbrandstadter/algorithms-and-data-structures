@@ -5,5 +5,16 @@ public class Main {
 
     new Thread(new Transfer(account1, account2, 10.00), "Transfer1").start();
     new Thread(new Transfer(account2, account1, 55.88), "Transfer2").start();
+
+    Tutor tutor = new Tutor();
+    Student student = new Student(tutor);
+    tutor.setStudent(student);
+
+    Thread tutorThread = new Thread(tutor::studyTime);
+    Thread studentThread = new Thread(student::handInAssignment);
+
+    tutorThread.start();
+    studentThread.start();
   }
 }
+
