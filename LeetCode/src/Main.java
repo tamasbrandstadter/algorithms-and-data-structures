@@ -111,10 +111,16 @@ public class Main {
   //Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.
   private static int getSum(int a, int b) {
     return IntStream.of(a, b).sum();
+  }
 
-    //other solutions would be:
-    //return Math.addExact(a, b);
-    //return b == 0 ? a : getSum(a ^ b, (a & b) << 1);
+  //Other solution would be:
+  private static int getSum2(int a, int b) {
+    return Math.addExact(a, b);
+  }
+
+  //With bitwise operations:
+  private static int getSum3(int a, int b) {
+    return b == 0 ? a : getSum(a ^ b, (a & b) << 1);
   }
 
   //Count the number of prime numbers less than a non-negative number, n.
@@ -135,8 +141,7 @@ public class Main {
     for (int i = 2; i < n; i++) {
       isPrime[i] = true;
     }
-    // Loop's ending condition is i * i < n instead of i < sqrt(n)
-    // to avoid repeatedly calling an expensive function sqrt().
+
     for (int i = 2; i * i < n; i++) {
       if (!isPrime[i]) {
         continue;
