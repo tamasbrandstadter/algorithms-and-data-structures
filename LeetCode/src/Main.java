@@ -120,7 +120,7 @@ public class Main {
 
   //With bitwise operations:
   private static int getSum3(int a, int b) {
-    return b == 0 ? a : getSum(a ^ b, (a & b) << 1);
+    return b == 0 ? a : getSum3(a ^ b, (a & b) << 1);
   }
 
   //Count the number of prime numbers less than a non-negative number, n.
