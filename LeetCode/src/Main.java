@@ -584,4 +584,51 @@ public class Main {
     }
     return res;
   }
+
+  //Write a function to find the longest common prefix string amongst an array of strings.
+  private static String longestCommonPrefix(String[] strs) {
+    StringBuilder result = new StringBuilder();
+
+    if (strs != null && strs.length > 0) {
+      Arrays.sort(strs);
+
+      char[] a = strs[0].toCharArray();
+      char[] b = strs[strs.length - 1].toCharArray();
+
+      for (int i = 0; i < a.length; i++) {
+        if (a[i] == b[i] && i <= b.length) {
+          result.append(b[i]);
+        } else {
+          return result.toString();
+        }
+      }
+    }
+    return result.toString();
+  }
+
+  //Given a sorted linked list, delete all duplicates such that each element appear only once.
+  private static ListNode deleteDuplicates(ListNode head) {
+    ListNode current = head;
+
+    while (current != null && current.next != null) {
+      if (current.val == current.next.val) {
+        current.next = current.next.next;
+      } else {
+        current = current.next;
+      }
+    }
+    return head;
+  }
+
+  //Given a positive integer num, write a function which returns True if num is a perfect square else False.
+  private static boolean isPerfectSquare(int num) {
+    int i = 1;
+
+    while (num > 0) {
+      num -= i;
+      i += 2;
+    }
+    return num == 0;
+  }
+
 }
