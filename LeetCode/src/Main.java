@@ -631,4 +631,14 @@ public class Main {
     return num == 0;
   }
 
+  //Compute and return the square root of x. x is guaranteed to be a non-negative integer.
+  private static int mySqrt(int x) {
+    long r = x;
+
+    while (r * r > x) {
+      r = (r + x / r) / 2;
+    }
+    return (int) r;
+  }
+
 }
