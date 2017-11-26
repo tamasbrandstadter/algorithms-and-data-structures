@@ -668,7 +668,7 @@ public class Main {
     char[] chars = s.toCharArray();
 
     for (int i = chars.length - 1; i >= 0; i--) {
-      if (vowels.contains(chars[i]+"")) {
+      if (vowels.contains(chars[i] + "")) {
         inputVowelsReversed.add(chars[i]);
       }
     }
@@ -676,7 +676,7 @@ public class Main {
     StringBuilder sb = new StringBuilder();
 
     for (int i = 0, j = 0; i < s.length(); i++) {
-      if (!vowels.contains(s.charAt(i)+"")){
+      if (!vowels.contains(s.charAt(i) + "")) {
         sb.append(s.charAt(i));
       } else {
         sb.append(inputVowelsReversed.get(j));
@@ -695,6 +695,28 @@ public class Main {
   Otherwise, we define that this word doesn't use capitals in a right way.*/
   private static boolean detectCapitalUse(String word) {
     return word.matches("^[A-Z][A-Z]*[A-Z]*$") || word.matches("^[A-Z][a-z]*[a-z]$") || word.matches("^[a-z][a-z]*[a-z]*$");
+  }
+
+  //Given an arbitrary ransom note string and another string containing letters from all the magazines, write a function that will return true
+  //if the ransom note can be constructed from the magazines; otherwise, it will return false.
+  //Each letter in the magazine string can only be used once in your ransom note.
+  private static boolean canConstruct(String ransomNote, String magazine) {
+    Map<Character, Integer> map = new HashMap<>();
+
+    for (char c : magazine.toCharArray()) {
+      int count = map.getOrDefault(c, 0) + 1;
+      map.put(c, count);
+    }
+
+    for (char c : ransomNote.toCharArray()) {
+      int count = map.getOrDefault(c, 0) - 1;
+      if (count < 0) {
+        return false;
+      }
+      map.put(c, count);
+    }
+
+    return true;
   }
 
 }
