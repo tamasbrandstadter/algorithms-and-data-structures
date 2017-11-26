@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -639,6 +640,51 @@ public class Main {
       r = (r + x / r) / 2;
     }
     return (int) r;
+  }
+
+  //Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+  //The brackets must close in the correct order, "()" and "()[]{}" are all valid but "(]" and "([)]" are not.
+  private static boolean isValid(String s) {
+    Stack<Character> stack = new Stack<>();
+
+    for (char c : s.toCharArray()) {
+      if (c == '(') {
+        stack.push(')');
+      } else if (c == '{') {
+        stack.push('}');
+      } else if (c == '[') {
+        stack.push(']');
+      } else if (stack.isEmpty() || stack.pop() != c) {
+        return false;
+      }
+    }
+    return stack.isEmpty();
+  }
+
+  //Write a function that takes a string as input and reverse only the vowels of a string.
+  private static String reverseVowels(String s) {
+    String vowels = "aeiouAEIOU";
+    List<Character> inputVowelsReversed = new ArrayList<>();
+    char[] chars = s.toCharArray();
+
+    for (int i = chars.length - 1; i >= 0; i--) {
+      if (vowels.contains(chars[i]+"")) {
+        inputVowelsReversed.add(chars[i]);
+      }
+    }
+
+    StringBuilder sb = new StringBuilder();
+
+    for (int i = 0, j = 0; i < s.length(); i++) {
+      if (!vowels.contains(s.charAt(i)+"")){
+        sb.append(s.charAt(i));
+      } else {
+        sb.append(inputVowelsReversed.get(j));
+        j++;
+      }
+    }
+
+    return sb.toString();
   }
 
 }
