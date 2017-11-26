@@ -15,6 +15,7 @@ import static java.util.stream.LongStream.rangeClosed;
 
 public class Main {
   public static void main(String[] args) {
+    System.out.println(findComplement(5));
   }
 
   //Given an array of integers, return indices of the two numbers such that they add up to a specific target.
@@ -717,6 +718,14 @@ public class Main {
     }
 
     return true;
+  }
+
+  private static int findComplement(int num) {
+    String binaryString = Integer.toBinaryString(num);
+
+    String complement = binaryString.replace('1', '2').replace('0', '1').replace('2', '0');
+
+    return Integer.parseInt(complement, 2);
   }
 
 }
