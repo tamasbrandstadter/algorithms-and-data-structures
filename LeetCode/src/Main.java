@@ -719,11 +719,26 @@ public class Main {
     return true;
   }
 
+  //Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.
   private static int findComplement(int num) {
     String binaryString = Integer.toBinaryString(num);
     String complement = binaryString.replace('1', '2').replace('0', '1').replace('2', '0');
 
     return Integer.parseInt(complement, 2);
+  }
+
+  //You are given a string representing an attendance record for a student. The record only contains the following three characters:
+  //'A' : Absent. 'L' : Late. 'P' : Present.
+  //A student could be rewarded if his attendance record doesn't contain more than one 'A' (absent) or more than two continuous 'L' (late).
+  //You need to return whether the student could be rewarded according to his attendance record.
+  private static boolean checkRecord(String s) {
+    Map<Character, Integer> characterMap = new HashMap<>();
+
+    for (char c : s.toCharArray()) {
+      characterMap.put(c, characterMap.getOrDefault(c, 0) + 1);
+    }
+
+    return (!characterMap.containsKey('A') || characterMap.get('A') <= 1) && !s.contains("LLL");
   }
 
 }
