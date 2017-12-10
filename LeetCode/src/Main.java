@@ -15,7 +15,6 @@ import static java.util.stream.LongStream.rangeClosed;
 
 public class Main {
   public static void main(String[] args) {
-
   }
 
   //Given an array of integers, return indices of the two numbers such that they add up to a specific target.
@@ -774,6 +773,28 @@ public class Main {
     }
 
     return null;
+  }
+
+  //Given an array of integers, every element appears three times except for one, which appears exactly once. Find that single one.
+  //Your algorithm should have a linear runtime complexity.
+  private static int singleNumber2(int[] nums) {
+    if (nums.length == 1) {
+      return nums[0];
+    }
+
+    Arrays.sort(nums);
+
+    if (nums.length == 4) {
+      return nums[nums.length - 1];
+    }
+
+    for (int i = 0; i < nums.length - 1; i += 3) {
+      if (nums[i] != nums[i + 1] || nums[i] != nums[i + 2]) {
+        return nums[i];
+      }
+    }
+
+    return nums[nums.length - 1];
   }
 
 }
