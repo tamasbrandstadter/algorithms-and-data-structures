@@ -15,6 +15,7 @@ import static java.util.stream.LongStream.rangeClosed;
 
 public class Main {
   public static void main(String[] args) {
+
   }
 
   //Given an array of integers, return indices of the two numbers such that they add up to a specific target.
@@ -739,6 +740,40 @@ public class Main {
     }
 
     return (!characterMap.containsKey('A') || characterMap.get('A') <= 1) && !s.contains("LLL");
+  }
+
+  //Given a linked list, determine if it has a cycle in it.
+  private static boolean hasCycle(ListNode head) {
+    Set<ListNode> nodes = new HashSet<>();
+    ListNode current = head;
+
+    while (current != null) {
+      if (nodes.contains(current)) {
+        return true;
+      } else {
+        nodes.add(current);
+      }
+      current = current.next;
+    }
+
+    return false;
+  }
+
+  //Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
+  private static ListNode detectCycle(ListNode head) {
+    Set<ListNode> nodes = new HashSet<>();
+    ListNode current = head;
+
+    while (current != null) {
+      if (nodes.contains(current)) {
+        return current;
+      } else {
+        nodes.add(current);
+      }
+      current = current.next;
+    }
+
+    return null;
   }
 
 }
