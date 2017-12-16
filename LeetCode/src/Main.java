@@ -15,8 +15,6 @@ import static java.util.stream.LongStream.rangeClosed;
 
 public class Main {
   public static void main(String[] args) {
-    int[] ints = twoSum2(new int[] {5, 25, 75}, 100);
-    Arrays.stream(ints).forEach(System.out::println);
   }
 
   //Given an array of integers, return indices of the two numbers such that they add up to a specific target.
@@ -818,7 +816,6 @@ public class Main {
   }
 
   //Given an array of size n, find the majority element. The majority element is the element that appears more than n/2 times.
-  //O(n) runtime
   private static int majorityElement(int[] nums) {
     int majority = nums.length / 2;
 
@@ -832,7 +829,7 @@ public class Main {
     return -1;
   }
 
-  //O(1) runtime solution would be:
+  //simpler solution would be:
   private static int majorityElement2(int[] nums) {
     Arrays.sort(nums);
     return nums[nums.length / 2];
@@ -855,4 +852,33 @@ public class Main {
 
     return new int[] {};
   }
+
+  //Write a function to delete a node (except the tail) in a singly linked list, given only access to that node.
+  //OMG...
+  private static void deleteNode(ListNode node) {
+    node.val = node.next.val;
+    node.next = node.next.next;
+  }
+
+  //Given a singly linked list, determine if it is a palindrome.
+  private static boolean isPalindromeWithStack(ListNode head) {
+    Stack<ListNode> nodes = new Stack<>();
+
+    ListNode current = head;
+    while (current != null) {
+      nodes.push(current);
+      current = current.next;
+    }
+
+    ListNode node = head;
+    while (!nodes.empty() && node != null) {
+      if (nodes.pop().val != node.val) {
+        return false;
+      }
+      node = node.next;
+    }
+
+    return true;
+  }
+
 }
