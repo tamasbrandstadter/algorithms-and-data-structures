@@ -15,6 +15,8 @@ import static java.util.stream.LongStream.rangeClosed;
 
 public class Main {
   public static void main(String[] args) {
+    int[] ints = twoSum2(new int[] {5, 25, 75}, 100);
+    Arrays.stream(ints).forEach(System.out::println);
   }
 
   //Given an array of integers, return indices of the two numbers such that they add up to a specific target.
@@ -826,7 +828,6 @@ public class Main {
       if (nums[i] == nums[i + majority]) {
         return nums[i];
       }
-
     }
     return -1;
   }
@@ -837,4 +838,21 @@ public class Main {
     return nums[nums.length / 2];
   }
 
+  /*Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
+  The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2.
+  Please note that your returned answers (both index1 and index2) are not zero-based.
+  You may assume that each input would have exactly one solution and you may not use the same element twice.*/
+  private static int[] twoSum2(int[] numbers, int target) {
+    Map<Integer, Integer> sumMap = new HashMap<>();
+
+    for (int i = 0; i < numbers.length; i++) {
+      int distinction = target - numbers[i];
+      if (sumMap.containsKey(distinction)) {
+        return new int[] {sumMap.get(distinction) + 1, i + 1};
+      }
+      sumMap.put(numbers[i], i);
+    }
+
+    return new int[] {};
+  }
 }
