@@ -15,7 +15,6 @@ import static java.util.stream.LongStream.rangeClosed;
 
 public class Main {
   public static void main(String[] args) {
-    System.out.println(Arrays.toString(plusOne(new int[] {9, 9})));
   }
 
   //Given an array of integers, return indices of the two numbers such that they add up to a specific target.
@@ -814,6 +813,28 @@ public class Main {
     nums[0] = 1;
 
     return nums;
+  }
+
+  //Given an array of size n, find the majority element. The majority element is the element that appears more than n/2 times.
+  //O(n) runtime
+  private static int majorityElement(int[] nums) {
+    int majority = nums.length / 2;
+
+    Arrays.sort(nums);
+
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] == nums[i + majority]) {
+        return nums[i];
+      }
+
+    }
+    return -1;
+  }
+
+  //O(1) runtime solution would be:
+  private static int majorityElement2(int[] nums) {
+    Arrays.sort(nums);
+    return nums[nums.length / 2];
   }
 
 }
