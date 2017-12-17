@@ -226,7 +226,8 @@ public class Main {
   //partial solution with stream
   private static List<String> fizzBuzz2(int n) {
     return rangeClosed(1, n)
-        .filter(value -> value % 3 == 0).mapToObj(value -> "Fizz")
+        .filter(value -> value % 3 == 0)
+        .mapToObj(value -> "Fizz")
         .collect(Collectors.toList());
   }
 
@@ -861,7 +862,7 @@ public class Main {
   }
 
   //Given a singly linked list, determine if it is a palindrome.
-  private static boolean isPalindromeWithStack(ListNode head) {
+  private static boolean isPalindrome(ListNode head) {
     Stack<ListNode> nodes = new Stack<>();
 
     ListNode current = head;
@@ -878,6 +879,24 @@ public class Main {
       node = node.next;
     }
 
+    return true;
+  }
+
+  //Given a positive integer, check whether it has alternating bits: namely, if two adjacent bits will always have different values.
+  private static boolean hasAlternatingBits(int n) {
+    char[] binaryString = Integer.toBinaryString(n).toCharArray();
+
+    Stack<Character> bits = new Stack<>();
+
+    for (char c : binaryString) {
+      bits.push(c);
+    }
+
+    while (bits.size() != 1) {
+      if (bits.pop() == bits.peek()) {
+        return false;
+      }
+    }
     return true;
   }
 
