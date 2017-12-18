@@ -884,11 +884,11 @@ public class Main {
 
   //Given a positive integer, check whether it has alternating bits: namely, if two adjacent bits will always have different values.
   private static boolean hasAlternatingBits(int n) {
-    char[] binaryString = Integer.toBinaryString(n).toCharArray();
+    char[] binaryChars = Integer.toBinaryString(n).toCharArray();
 
     Stack<Character> bits = new Stack<>();
 
-    for (char c : binaryString) {
+    for (char c : binaryChars) {
       bits.push(c);
     }
 
