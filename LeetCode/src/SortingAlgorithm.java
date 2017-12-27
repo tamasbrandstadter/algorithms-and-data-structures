@@ -59,7 +59,6 @@ public class SortingAlgorithm {
     mergeSort(input, start, mid);
     mergeSort(input, mid, end);
     merge(input, start, mid, end);
-
   }
 
   private void merge(int[] input, int start, int mid, int end) {

@@ -8,10 +8,7 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import static java.lang.StrictMath.sqrt;
-import static java.util.stream.LongStream.range;
-import static java.util.stream.LongStream.rangeClosed;
+import java.util.stream.LongStream;
 
 public class Main {
   public static void main(String[] args) {
@@ -50,7 +47,7 @@ public class Main {
   //Determine whether an integer is a palindrome.
   private static boolean isPalindrome(int x) {
     if (String.valueOf(x).startsWith("-")) {
-      x -= x + x;
+      x *= -1;
     }
     return String.valueOf(x).equals(new StringBuilder(String.valueOf(x)).reverse().toString());
   }
@@ -126,14 +123,14 @@ public class Main {
 
   //Count the number of prime numbers less than a non-negative number, n.
   private static int countPrimes(int n) {
-    return (int) range(1, n)
+    return (int) LongStream.range(1, n)
         .parallel()
         .filter(Main::isPrime)
         .count();
   }
 
   private static boolean isPrime(long n) {
-    return n > 1 && rangeClosed(2, (long) sqrt(n)).noneMatch(divisor -> n % divisor == 0);
+    return n > 1 && LongStream.rangeClosed(2, (long) StrictMath.sqrt(n)).noneMatch(divisor -> n % divisor == 0);
   }
 
   //The Sieve of Eratosthenes uses an extra O(n) memory and its runtime complexity is O(n log log n).
@@ -225,7 +222,7 @@ public class Main {
 
   //partial solution with stream
   private static List<String> fizzBuzz2(int n) {
-    return rangeClosed(1, n)
+    return LongStream.rangeClosed(1, n)
         .filter(value -> value % 3 == 0)
         .mapToObj(value -> "Fizz")
         .collect(Collectors.toList());

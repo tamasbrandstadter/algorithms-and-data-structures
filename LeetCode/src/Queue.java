@@ -46,8 +46,8 @@ public class Queue {
 
   public void view() {
     System.out.print("[");
-    for (int i = 0; i < numbers.length; i++) {
-      System.out.print(numbers[i] + " ");
+    for (int number : numbers) {
+      System.out.print(number + " ");
     }
     System.out.print("]");
   }
