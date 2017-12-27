@@ -11,6 +11,16 @@ public class SearchingAlgorithm {
     return -1;
   }
 
+  public int recursiveLinearSearch(int[] numbers, int i, int x) {
+    if (i > numbers.length - 1) {
+      return -1;
+    } else if (numbers[i] == x) {
+      return i;
+    } else {
+      return recursiveLinearSearch(numbers, i + 1, x);
+    }
+  }
+
   public int binarySearch(int[] numbers, int x) {
     Arrays.sort(numbers);
 
@@ -30,6 +40,21 @@ public class SearchingAlgorithm {
     }
 
     return -1;
+  }
+
+  public int recursiveBinarySearch(int[] numbers, int start, int end, int x) {
+    if (start > end) {
+      return -1;
+    } else {
+      int mid = (start + end) / 2;
+      if (numbers[mid] == x) {
+        return mid;
+      } else if (numbers[mid] > x) {
+        return recursiveBinarySearch(numbers, start, mid - 1, x);
+      } else {
+        return recursiveBinarySearch(numbers, mid + 1, end, x);
+      }
+    }
   }
 
 }
