@@ -882,7 +882,7 @@ public class Main {
 
   //Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
   //solution with binary search:
-  public static int missingNumber(int[] nums) {
+  private static int missingNumber(int[] nums) {
     Arrays.sort(nums);
 
     int start = 0;
@@ -903,7 +903,7 @@ public class Main {
   }
 
   //solution with Gauss-formula:
-  public static int missingNumberWithGaussFormula(int[] nums) {
+  private static int missingNumberWithGaussFormula(int[] nums) {
     int expectedSum = nums.length * (nums.length + 1) / 2;
     int actualSum = 0;
 
@@ -915,8 +915,25 @@ public class Main {
   }
 
   //solution with streams:
-  public static int missingNumberWithStream(int[] nums) {
+  private static int missingNumberWithStream(int[] nums) {
     return IntStream.rangeClosed(0, nums.length).filter(i -> IntStream.of(nums).noneMatch(j -> i == j)).findFirst().getAsInt();
+  }
+
+  //Given a string s consists of upper/lower-case alphabets and empty space characters ' ', return the length of last word in the string.
+  //If the last word does not exist, return 0.
+  private static int lengthOfLastWord(String s) {
+    String trimmed = s.trim();
+    int count = 0;
+
+    for (int i = trimmed.length() - 1; i >= 0; i--) {
+      if (trimmed.charAt(i) != ' ') {
+        count++;
+      } else {
+        break;
+      }
+    }
+
+    return count;
   }
 
 }
