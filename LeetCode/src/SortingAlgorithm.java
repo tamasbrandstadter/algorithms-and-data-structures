@@ -26,6 +26,23 @@ public class SortingAlgorithm {
     return nums;
   }
 
+  public int[] selectionSort2(int[] nums) {
+    for (int i = 0; i < nums.length - 1; i++) {
+      int minimum = i;
+
+      for (int j = i + 1; j < nums.length; j++) {
+        if (nums[j] < nums[minimum]) {
+          minimum = j;
+        }
+      }
+
+      int temp = nums[i];
+      nums[i] = nums[minimum];
+      nums[minimum] = temp;
+    }
+    return nums;
+  }
+
   public int[] insertionSort(int[] nums) {
     for (int firstUnsortedIndex = 1; firstUnsortedIndex < nums.length; firstUnsortedIndex++) {
       int newElement = nums[firstUnsortedIndex];
@@ -35,6 +52,21 @@ public class SortingAlgorithm {
         nums[i] = nums[i - 1];
       }
       nums[i] = newElement;
+    }
+    return nums;
+  }
+
+  public int[] insertionSort2(int[] nums) {
+    for (int i = 1; i < nums.length; i++) {
+      int number = nums[i];
+      int j = i - 1;
+
+      while (j >= 0 && nums[j] > number) {
+        nums[j + 1] = nums[j];
+        j--;
+      }
+
+      nums[j + 1] = number;
     }
     return nums;
   }
