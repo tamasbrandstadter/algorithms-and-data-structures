@@ -897,4 +897,29 @@ public class Main {
     return true;
   }
 
+  //Given two arrays, write a function to compute their intersection.
+  //solution using streams:
+  private static int[] intersection(int[] nums1, int[] nums2) {
+    return IntStream.of(nums1).filter(n -> IntStream.of(nums2).anyMatch(i -> i == n)).distinct().toArray();
+  }
+
+  //Given two arrays, write a function to compute their intersection.
+  //solution using sets:
+  private static int[] intersectionWithSet(int[] nums1, int[] nums2) {
+    Set<Integer> integers = new HashSet<>();
+    Set<Integer> intersection = new HashSet<>();
+
+    for (int i : nums1) {
+      integers.add(i);
+    }
+
+    for (int j : nums2) {
+      if (integers.contains(j)) {
+        intersection.add(j);
+      }
+    }
+
+    return intersection.stream().mapToInt(x -> x).toArray();
+  }
+
 }
