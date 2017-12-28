@@ -4,17 +4,17 @@ NumArray obj = new NumArray(nums);
 int param_1 = obj.sumRange(i,j)*/
 
 public class NumArray {
-  private int[] nums;
+  private int[] sum;
 
   private NumArray(int[] nums) {
-    this.nums = nums;
+    sum = new int[nums.length + 1];
+
+    for (int i = 0; i < nums.length; i++) {
+      sum[i + 1] = sum[i] + nums[i];
+    }
   }
 
   private int sumRange(int i, int j) {
-    int sum = 0;
-    for (int k = i; k <= j; k++) {
-      sum += nums[k];
-    }
-    return sum;
+    return sum[j + 1] - sum[i];
   }
 }
