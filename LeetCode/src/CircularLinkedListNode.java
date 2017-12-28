@@ -1,6 +1,6 @@
-public class Node {
+public class CircularLinkedListNode {
   int val;
-  Node next;
+  CircularLinkedListNode next;
 
   public void setVal(int val) {
     this.val = val;

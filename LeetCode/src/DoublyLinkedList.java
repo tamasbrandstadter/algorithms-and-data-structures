@@ -1,14 +1,14 @@
 public class DoublyLinkedList {
   private int val;
-  private ListNode first;
-  private ListNode last;
+  private DoublyLinkedListNode first;
+  private DoublyLinkedListNode last;
 
   private boolean isEmpty() {
     return first == null;
   }
 
   public void insertFirst(int val) {
-    ListNode node = new ListNode();
+    DoublyLinkedListNode node = new DoublyLinkedListNode();
     node.val = val;
 
     if (isEmpty()) {
@@ -22,7 +22,7 @@ public class DoublyLinkedList {
   }
 
   public void insertLast(int val) {
-    ListNode node = new ListNode();
+    DoublyLinkedListNode node = new DoublyLinkedListNode();
     node.val = val;
 
     if (isEmpty()) {
@@ -35,8 +35,8 @@ public class DoublyLinkedList {
     last = node;
   }
 
-  public ListNode deleteFirst() {
-    ListNode temp = first;
+  public DoublyLinkedListNode deleteFirst() {
+    DoublyLinkedListNode temp = first;
 
     if (first.next == null) {
       last = null;
@@ -49,8 +49,8 @@ public class DoublyLinkedList {
     return temp;
   }
 
-  public ListNode deleteLast() {
-    ListNode temp = last;
+  public DoublyLinkedListNode deleteLast() {
+    DoublyLinkedListNode temp = last;
 
     if (first.next == null) {
       first = null;
@@ -64,7 +64,7 @@ public class DoublyLinkedList {
   }
 
   public boolean insertAfter(int key, int val) {
-    ListNode current = first;
+    DoublyLinkedListNode current = first;
 
     while (current.val != key) {
       current = current.next;
@@ -73,7 +73,7 @@ public class DoublyLinkedList {
       }
     }
 
-    ListNode node = new ListNode();
+    DoublyLinkedListNode node = new DoublyLinkedListNode();
     node.val = val;
 
     if (current == last) {
@@ -90,8 +90,8 @@ public class DoublyLinkedList {
     return true;
   }
 
-  public ListNode deleteKey(int key) {
-    ListNode current = first;
+  public DoublyLinkedListNode deleteKey(int key) {
+    DoublyLinkedListNode current = first;
 
     while (current.val != key) {
       current = current.next;
@@ -118,7 +118,7 @@ public class DoublyLinkedList {
   }
 
   public void displayForward() {
-    ListNode current = first;
+    DoublyLinkedListNode current = first;
     while (current != null) {
       current.displayNode();
       current = current.next;
@@ -126,7 +126,7 @@ public class DoublyLinkedList {
   }
   
   public void displayBackward() {
-    ListNode current = last;
+    DoublyLinkedListNode current = last;
     while (current != null) {
       current.displayNode();
       current = current.previous;

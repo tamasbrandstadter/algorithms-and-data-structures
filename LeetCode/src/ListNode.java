@@ -1,9 +1,10 @@
 public class ListNode {
   int val;
   ListNode next;
-  ListNode previous;
 
-  public void displayNode() {
-    System.out.println("[" + val + "]");
+  public ListNode(int x) {
+    val = x;
+    next = null;
   }
+
 }

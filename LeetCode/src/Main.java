@@ -93,7 +93,7 @@ public class Main {
       sum = sum + num % 10;
       num = num / 10;
     }
-    //recursive call
+
     sum = (sum < 10) ? sum : addDigits(sum);
     return sum;
   }
@@ -270,17 +270,6 @@ public class Main {
   }
 
   //Invert a binary tree.
-  static class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-      val = x;
-    }
-  }
-
-  //solution:
   private static TreeNode invertTree(TreeNode root) {
     if (root == null) {
       return root;
@@ -355,17 +344,6 @@ public class Main {
   }
 
   //Write a program to find the node at which the intersection of two singly linked lists begins.
-  static class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int x) {
-      val = x;
-      next = null;
-    }
-  }
-
-  //solution:
   private static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
     if (headA == null || headB == null) {
       return null;
@@ -546,26 +524,6 @@ public class Main {
   //A simple method is to take log of the given number on base 4, and if we get an integer then number is power of 4.
   private static boolean isPowerOfFour(int n) {
     return Math.log(n) / Math.log(4) % 1 == 0;
-  }
-
-  //Given an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.
-  //Your NumArray object will be instantiated and called as such:
-  //NumArray obj = new NumArray(nums);
-  //int param_1 = obj.sumRange(i,j);
-  private static class NumArray {
-    private int[] nums;
-
-    private NumArray(int[] nums) {
-      this.nums = nums;
-    }
-
-    private int sumRange(int i, int j) {
-      int sum = 0;
-      for (int k = i; k <= j; k++) {
-        sum += nums[k];
-      }
-      return sum;
-    }
   }
 
   //Given two strings s and t which consist of only lowercase letters.

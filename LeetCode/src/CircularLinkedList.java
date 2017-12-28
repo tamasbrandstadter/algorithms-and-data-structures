@@ -1,9 +1,9 @@
 public class CircularLinkedList {
-  private Node first;
-  private Node last;
+  private CircularLinkedListNode first;
+  private CircularLinkedListNode last;
 
   public void insertFirst(int value) {
-    Node newNode = new Node();
+    CircularLinkedListNode newNode = new CircularLinkedListNode();
     newNode.setVal(value);
 
     if (isEmpty()) {
@@ -14,7 +14,7 @@ public class CircularLinkedList {
   }
 
   public void insertLast(int value) {
-    Node newNode = new Node();
+    CircularLinkedListNode newNode = new CircularLinkedListNode();
     newNode.setVal(value);
 
     if (isEmpty()) {
@@ -38,7 +38,7 @@ public class CircularLinkedList {
   }
 
   public void displayList() {
-    Node current = first;
+    CircularLinkedListNode current = first;
     while (current != null) {
       current.displayNode();
       current = current.next;
