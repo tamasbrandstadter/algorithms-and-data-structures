@@ -880,4 +880,43 @@ public class Main {
     return intersection.stream().mapToInt(x -> x).toArray();
   }
 
+  //Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
+  //solution with binary search:
+  public static int missingNumber(int[] nums) {
+    Arrays.sort(nums);
+
+    int start = 0;
+    int end = nums.length - 1;
+    int mid;
+
+    while (start < end) {
+      mid = (end - start) / 2;
+
+      if (nums[mid] > mid) {
+        end = mid;
+      } else {
+        start = mid + 1;
+      }
+    }
+
+    return start;
+  }
+
+  //solution with Gauss-formula:
+  public static int missingNumberWithGaussFormula(int[] nums) {
+    int expectedSum = nums.length * (nums.length + 1) / 2;
+    int actualSum = 0;
+
+    for (int i : nums) {
+      actualSum += i;
+    }
+
+    return expectedSum - actualSum;
+  }
+
+  //solution with streams:
+  public static int missingNumberWithStream(int[] nums) {
+    return IntStream.rangeClosed(0, nums.length).filter(i -> IntStream.of(nums).noneMatch(j -> i == j)).findFirst().getAsInt();
+  }
+
 }
