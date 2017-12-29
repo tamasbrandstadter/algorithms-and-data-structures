@@ -269,6 +269,36 @@ public class Main {
     return x == 0 && y == 0;
   }
 
+  //Given a binary tree, find its maximum depth.
+  private int maxDepth(TreeNode root) {
+    if (root == null) {
+      return 0;
+    } else {
+      int leftDepth = maxDepth(root.left);
+      int rightDepth = maxDepth(root.right);
+
+      return leftDepth > rightDepth ? leftDepth + 1 : rightDepth + 1;
+    }
+  }
+
+  //Given a binary tree, find its minimum depth.
+  private int minDepth(TreeNode root) {
+    if (root == null) {
+      return 0;
+    }
+    if (root.left == null && root.right == null) {
+      return 1;
+    }
+    if (root.left == null) {
+      return minDepth(root.right) + 1;
+    }
+    if (root.right == null) {
+      return minDepth(root.left) + 1;
+    }
+
+    return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+  }
+
   //Invert a binary tree.
   private static TreeNode invertTree(TreeNode root) {
     if (root == null) {
@@ -279,7 +309,6 @@ public class Main {
     root.right = root.left;
     root.left = temp;
 
-    //recursions
     invertTree(root.left);
     invertTree(root.right);
 
@@ -418,7 +447,6 @@ public class Main {
       return l1;
     }
 
-    //recursive calls:
     if (l1.val < l2.val) {
       l1.next = mergeTwoLists(l1.next, l2);
       return l1;
