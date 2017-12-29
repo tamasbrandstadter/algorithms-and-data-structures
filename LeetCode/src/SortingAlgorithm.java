@@ -112,5 +112,34 @@ public class SortingAlgorithm {
     System.arraycopy(temp, 0, input, start, tempIndex);
   }
 
+  public void quickSort(int[] nums, int start, int end) {
+    if (start < end) {
+      int partition = getPartition(nums, start, end);
+
+      quickSort(nums, start, partition - 1);
+      quickSort(nums, partition + 1, end);
+    }
+  }
+
+  private int getPartition(int[] nums, int start, int end) {
+    int x = nums[end];
+    int i = start - 1;
+
+    for (int j = start; j <= end - 1; j++) {
+      if (nums[j] <= x) {
+        i++;
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+      }
+    }
+
+    int k = nums[i + 1];
+    nums[end] = k;
+    nums[i + 1] = x;
+
+    return i + 1;
+  }
+
 }
 
