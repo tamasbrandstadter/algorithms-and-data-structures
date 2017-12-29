@@ -138,5 +138,37 @@ public class SortingAlgorithm {
     return i + 1;
   }
 
+  public void quickSort2(int[] input, int start, int end) {
+    if (end - start < 2) {
+      return;
+    }
+
+    int pivotIndex = getPartition2(input, start, end);
+    quickSort2(input, start, pivotIndex);
+    quickSort2(input, pivotIndex + 1, end);
+  }
+
+  private int getPartition2(int[] input, int start, int end) {
+    int pivot = input[start];
+    int i = start;
+    int j = end;
+
+    while (i < j) {
+
+      while (i < j && input[--j] >= pivot);
+      if (i < j) {
+        input[i] = input[j];
+      }
+
+      while (i < j && input[++i] <= pivot);
+      if (i < j) {
+        input[j] = input[i];
+      }
+    }
+
+    input[j] = pivot;
+    return j;
+  }
+
 }
 
