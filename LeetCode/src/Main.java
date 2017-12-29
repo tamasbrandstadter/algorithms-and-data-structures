@@ -966,7 +966,7 @@ public class Main {
 
   //Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
   //solution: Kadane's Algorithm
-  private int maxSubArray(int[] nums) {
+  private static int maxSubArray(int[] nums) {
     int maxSoFar = nums[0];
     int currentMax = nums[0];
 
@@ -976,6 +976,29 @@ public class Main {
     }
 
     return maxSoFar;
+  }
+
+  private static ListNode removeNthFromEnd(ListNode head, int n) {
+    ListNode temp = new ListNode(0);
+    temp.next = head;
+
+    ListNode current = head;
+    int size = 0;
+    while (current != null) {
+      size++;
+      current = current.next;
+    }
+
+    int stepsToMake = size - n;
+    current = temp;
+    while (stepsToMake > 0) {
+      stepsToMake--;
+      current = current.next;
+    }
+
+    current.next = current.next.next;
+
+    return temp.next;
   }
 
 }
