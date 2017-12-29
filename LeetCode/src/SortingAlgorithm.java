@@ -21,6 +21,7 @@ public class SortingAlgorithm {
           largest = i;
         }
       }
+
       swap(nums, largest, lastUnsortedIndex);
     }
     return nums;
@@ -36,9 +37,7 @@ public class SortingAlgorithm {
         }
       }
 
-      int temp = nums[i];
-      nums[i] = nums[minimum];
-      nums[minimum] = temp;
+      swap(nums, i, minimum);
     }
     return nums;
   }
@@ -51,6 +50,7 @@ public class SortingAlgorithm {
       for (i = firstUnsortedIndex; i > 0 && nums[i - 1] > newElement; i--) {
         nums[i] = nums[i - 1];
       }
+
       nums[i] = newElement;
     }
     return nums;
@@ -71,14 +71,21 @@ public class SortingAlgorithm {
     return nums;
   }
 
-  private void swap(int[] nums, int i, int j) {
-    if (i == j) {
+  public void recursiveInsertionSort(int[] nums, int numberOfElements) {
+    if (numberOfElements < 2) {
       return;
     }
 
-    int temp = nums[i];
-    nums[i] = nums[j];
-    nums[j] = temp;
+    recursiveInsertionSort(nums, numberOfElements - 1);
+
+    int newElement = nums[numberOfElements - 1];
+    int i;
+
+    for (i = numberOfElements - 1; i > 0 && nums[i - 1] > newElement; i--) {
+      nums[i] = nums[i - 1];
+    }
+
+    nums[i] = newElement;
   }
 
   public void mergeSort(int[] input, int start, int end) {
@@ -185,6 +192,16 @@ public class SortingAlgorithm {
         countArray[i - min]--;
       }
     }
+  }
+
+  private void swap(int[] nums, int i, int j) {
+    if (i == j) {
+      return;
+    }
+
+    int temp = nums[i];
+    nums[i] = nums[j];
+    nums[j] = temp;
   }
 
 }
