@@ -128,14 +128,11 @@ public class SortingAlgorithm {
     for (int j = start; j <= end - 1; j++) {
       if (nums[j] <= x) {
         i++;
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
+        swap(nums, i, j);
       }
     }
 
-    int k = nums[i + 1];
-    nums[end] = k;
+    nums[end] = nums[i + 1];
     nums[i + 1] = x;
 
     return i + 1;
