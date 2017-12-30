@@ -1108,4 +1108,38 @@ public class Main {
     return Integer.compare(numberToGuess, guess);
   }
 
+  //You are climbing a stair case. It takes n steps to reach to the top.
+  //Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+  private static int climbStairsRecursively(int n) {
+    if (n == 0) {
+      return 1;
+    } else if (n == 1) {
+      return 1;
+    } else {
+      return climbStairsRecursively(n - 2) + climbStairsRecursively(n - 1);
+    }
+  }
+
+  private static int climbStairsWithFibonacciNumber(int n) {
+    if (n == 1) {
+      return 1;
+    }
+
+    int first = 1;
+    int second = 2;
+    for (int i = 3; i <= n; i++) {
+      int third = first + second;
+      first = second;
+      second = third;
+    }
+
+    return second;
+  }
+
+  private static int climbStairsWithFibonacciFormula(int n) {
+    double sqrt5 = Math.sqrt(5);
+    double fibonacciNumber = Math.pow((1 + sqrt5) / 2, n + 1) - Math.pow((1 - sqrt5) / 2, n + 1);
+    return (int) (fibonacciNumber / sqrt5);
+  }
+
 }
