@@ -1,3 +1,4 @@
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -1069,6 +1070,42 @@ public class Main {
 
   private static boolean isBadVersion(int version) {
     return version == 1;
+  }
+
+  /*We are playing the Guess Game. The game is as follows:
+  I pick a number from 1 to n. You have to guess which number I picked.
+  Every time you guess wrong, I'll tell you whether the number is higher or lower.*/
+  private static int guessNumber(int n) {
+    int left = 1;
+    int right = n;
+
+    SecureRandom random = new SecureRandom();
+    int randomNumberToFind = random.nextInt(n);
+    System.out.println("I thought a number...");
+
+    while (left <= right) {
+      int mid = left + (right - left) / 2;
+      System.out.println("My guess is " + mid + ".");
+
+      int response = guess(randomNumberToFind, mid);
+
+      if (response == 0) {
+        System.out.println("You got it.");
+        return mid;
+      } else if (response == -1) {
+        System.out.println("My number is lower.");
+        right = mid - 1;
+      } else {
+        System.out.println("My number is higher.");
+        left = mid + 1;
+      }
+    }
+
+    return left;
+  }
+
+  private static int guess(int numberToGuess, int guess) {
+    return Integer.compare(numberToGuess, guess);
   }
 
 }
