@@ -1,3 +1,6 @@
+import leetcode.ListNode;
+import leetcode.TreeNode;
+
 import java.security.SecureRandom;
 import java.util.*;
 import java.util.Stack;

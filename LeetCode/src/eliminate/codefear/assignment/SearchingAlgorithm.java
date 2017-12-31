@@ -1,3 +1,5 @@
+package eliminate.codefear.assignment;
+
 import java.util.Arrays;
 
 public class SearchingAlgorithm {

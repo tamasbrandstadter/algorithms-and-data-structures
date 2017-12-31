@@ -1,3 +1,7 @@
+package eliminate.codefear.assignment;
+
+import leetcode.ListNode;
+
 public class Vertex {
   private String name;
   private ListNode adjacent;

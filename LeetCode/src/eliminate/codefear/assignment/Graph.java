@@ -1,3 +1,7 @@
+package eliminate.codefear.assignment;
+
+import leetcode.ListNode;
+
 import java.util.stream.IntStream;
 
 public class Graph {

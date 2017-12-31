@@ -1,3 +1,5 @@
+package leetcode;
+
 import java.util.Stack;
 
 /*Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
@@ -5,6 +7,7 @@ import java.util.Stack;
     pop() -- Removes the element on top of the stack.
     top() -- Get the top element.
     getMin() -- Retrieve the minimum element in the stack.*/
+
 public class MinStack {
   private int min;
   private Stack<Integer> myStack;

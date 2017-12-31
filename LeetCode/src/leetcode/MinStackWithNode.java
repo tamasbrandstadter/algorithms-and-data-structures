@@ -1,3 +1,5 @@
+package leetcode;
+
 public class MinStackWithNode {
   private MinStackNode head;
 

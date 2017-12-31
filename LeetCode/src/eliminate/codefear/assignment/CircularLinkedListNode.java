@@ -1,3 +1,5 @@
+package eliminate.codefear.assignment;
+
 public class CircularLinkedListNode {
   int val;
   CircularLinkedListNode next;

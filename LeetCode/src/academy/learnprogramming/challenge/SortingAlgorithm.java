@@ -1,3 +1,5 @@
+package academy.learnprogramming.challenge;
+
 public class SortingAlgorithm {
 
   public int[] bubbleSort(int[] nums) {

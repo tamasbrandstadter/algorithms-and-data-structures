@@ -1,3 +1,5 @@
+package eliminate.codefear.assignment;
+
 public class Queue {
   private int[] numbers;
   private int front;

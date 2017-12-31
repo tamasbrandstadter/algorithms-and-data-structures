@@ -1,3 +1,5 @@
+package eliminate.codefear.assignment;
+
 public class CircularLinkedList {
   private CircularLinkedListNode first;
   private CircularLinkedListNode last;

@@ -1,3 +1,5 @@
+package eliminate.codefear.assignment;
+
 public class Stack {
   private int top;
   private long[] numbers;

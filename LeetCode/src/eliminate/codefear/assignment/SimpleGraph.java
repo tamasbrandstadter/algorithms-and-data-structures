@@ -1,3 +1,5 @@
+package eliminate.codefear.assignment;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.stream.IntStream;
@@ -20,7 +22,7 @@ public class SimpleGraph {
       System.out.println("Cannot add more vertices.");
     } else {
       LinkedList<Vertex> list = new LinkedList<>();
-      list.add(new Vertex(vertexName));
+      list.addFirst(new Vertex(vertexName));
       this.adjacents[index++] = list;
     }
   }
@@ -28,7 +30,7 @@ public class SimpleGraph {
   public void addEdge(String sourceVertex, String destinationVertex) {
     IntStream.range(0, adjacents.length).forEachOrdered(i -> {
       if (((Vertex) adjacents[i].getFirst()).getName().equals(sourceVertex)) {
-        adjacents[i].add(new Vertex(destinationVertex));
+        adjacents[i].addLast(new Vertex(destinationVertex));
       }
     });
   }
