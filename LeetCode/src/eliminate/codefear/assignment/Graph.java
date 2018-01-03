@@ -1,6 +1,6 @@
 package eliminate.codefear.assignment;
 
-import leetcode.ListNode;
+import leetcode.problem.ListNode;
 
 import java.util.stream.IntStream;
 

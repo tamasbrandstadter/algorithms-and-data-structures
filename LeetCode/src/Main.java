@@ -1,5 +1,5 @@
-import leetcode.ListNode;
-import leetcode.TreeNode;
+import leetcode.problem.ListNode;
+import leetcode.problem.TreeNode;
 
 import java.security.SecureRandom;
 import java.util.*;
@@ -10,6 +10,17 @@ import java.util.stream.LongStream;
 
 public class Main {
   public static void main(String[] args) {
+    // should return true
+    System.out.println(checkForPalindrome("abccba"));
+    // should return true
+    System.out.println(checkForPalindrome("Was it a car or a cat I saw?"));
+    // should return true
+    System.out.println(checkForPalindrome("I did, did I?"));
+    // should return false
+    System.out.println(checkForPalindrome("hello"));
+    // should return true
+    System.out.println(checkForPalindrome("Don't nod"));
+
   }
 
   //Given an array of integers, return indices of the two numbers such that they add up to a specific target.
@@ -1107,6 +1118,7 @@ public class Main {
 
   //You are climbing a stair case. It takes n steps to reach to the top.
   //Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+  //recursive solution:
   private static int climbStairsRecursively(int n) {
     if (n == 0) {
       return 1;
@@ -1117,6 +1129,7 @@ public class Main {
     }
   }
 
+  //Fibonacci-number solution:
   private static int climbStairsWithFibonacciNumber(int n) {
     if (n == 1) {
       return 1;
@@ -1133,10 +1146,31 @@ public class Main {
     return second;
   }
 
+  //Fibonacci-formula solution:
   private static int climbStairsWithFibonacciFormula(int n) {
     double sqrt5 = Math.sqrt(5);
     double fibonacciNumber = Math.pow((1 + sqrt5) / 2, n + 1) - Math.pow((1 - sqrt5) / 2, n + 1);
     return (int) (fibonacciNumber / sqrt5);
+  }
+
+  //Determine whether a String is a palindrome. Strings may contain punctuation and spaces, they should be ignored, just like case.
+  private static boolean checkForPalindrome(String s) {
+    Deque<Character> stack = new LinkedList<>();
+    String alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+    for (char c : s.toLowerCase().toCharArray()) {
+      if (alphabet.contains(c + "")) {
+        stack.push(c);
+      }
+    }
+
+    while (stack.size() != 1 && !stack.isEmpty()) {
+      if (stack.pop() != stack.removeLast()) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
 }

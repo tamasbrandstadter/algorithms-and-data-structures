@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.problem;
 
 /*Given an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.
 Your NumArray object will be instantiated and called as such:

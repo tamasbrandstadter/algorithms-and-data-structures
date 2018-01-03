@@ -1,6 +1,6 @@
 package eliminate.codefear.assignment;
 
-import leetcode.ListNode;
+import leetcode.problem.ListNode;
 
 public class Vertex {
   private String name;
