@@ -10,17 +10,6 @@ import java.util.stream.LongStream;
 
 public class Main {
   public static void main(String[] args) {
-    // should return true
-    System.out.println(checkForPalindrome("abccba"));
-    // should return true
-    System.out.println(checkForPalindrome("Was it a car or a cat I saw?"));
-    // should return true
-    System.out.println(checkForPalindrome("I did, did I?"));
-    // should return false
-    System.out.println(checkForPalindrome("hello"));
-    // should return true
-    System.out.println(checkForPalindrome("Don't nod"));
-
   }
 
   //Given an array of integers, return indices of the two numbers such that they add up to a specific target.
