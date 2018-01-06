@@ -1,5 +1,11 @@
 package academy.learnprogramming.challenge;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.IntStream;
+
 public class SortingAlgorithm {
 
   public int[] bubbleSort(int[] nums) {
@@ -194,6 +200,49 @@ public class SortingAlgorithm {
         countArray[i - min]--;
       }
     }
+  }
+
+  public void bucketSort(int[] nums) {
+    List<Integer>[] buckets = new ArrayList[10];
+
+    for (int i = 0; i < buckets.length; i++) {
+      buckets[i] = new ArrayList<>();
+    }
+
+    for (int num : nums) {
+      buckets[hash(num)].add(num);
+    }
+
+    for (List<Integer> bucket : buckets) {
+      Collections.sort(bucket);
+    }
+
+    int j = 0;
+    for (int i = 0; i < nums.length; i++) {
+      for (int value : buckets[i]) {
+        nums[j++] = value;
+      }
+    }
+  }
+
+  public void bucketSortWithStream(int[] nums) {
+    List<Integer>[] buckets = new ArrayList[10];
+
+    Arrays.setAll(buckets, i -> new ArrayList<>());
+
+    IntStream.range(0, nums.length)
+        .forEachOrdered(i -> buckets[hash(i)].add(nums[i]));
+
+    Arrays.stream(buckets)
+        .forEachOrdered(Collections::sort);
+
+    Arrays.stream(buckets)
+        .forEachOrdered(bucket -> IntStream.range(0, bucket.size())
+            .forEachOrdered(j -> nums[j] = bucket.get(j)));
+  }
+
+  private int hash(int i) {
+    return i / 10 % 10;
   }
 
   private void swap(int[] nums, int i, int j) {
