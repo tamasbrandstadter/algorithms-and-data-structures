@@ -19,6 +19,18 @@ public class Tree {
     }
   }
 
+  public void traversePreOrder() {
+    if (root != null) {
+      root.traversePreOrder();
+    }
+  }
+
+  public void traversePostOrder() {
+    if (root != null) {
+      root.traversePostOrder();
+    }
+  }
+
   public TreeNode get(int value) {
     if (root != null) {
       return root.get(value);
@@ -63,6 +75,11 @@ public class Tree {
       } else if (subTreeRoot.getRight() == null) {
         return subTreeRoot.getLeft();
       }
+      //Case 3: node to delete has 2 children
+      //Replace the value in subTreeRoot node with the smallest value from the right subtree
+      subTreeRoot.setValue(subTreeRoot.getRight().getMin());
+      //Delete the node that has the smallest value in the right subtree
+      subTreeRoot.setRight(delete(subTreeRoot.getRight(), subTreeRoot.getValue()));
     }
 
     return subTreeRoot;

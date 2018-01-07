@@ -63,6 +63,7 @@ public class TreeNode {
     }
   }
 
+  //from smallest to highest (sorted)
   public void traverseInOrder() {
     if (left != null) {
       left.traverseInOrder();
@@ -71,6 +72,28 @@ public class TreeNode {
     if (right != null) {
       right.traverseInOrder();
     }
+  }
+
+  //root -> left subtree -> right subtree
+  public void traversePreOrder(){
+    System.out.println(value + " ");
+    if (left != null) {
+      left.traversePreOrder();
+    }
+    if (right != null) {
+      right.traversePreOrder();
+    }
+  }
+
+  //from leaves to root, left and right
+  public void traversePostOrder(){
+    if (left != null) {
+      left.traversePostOrder();
+    }
+    if (right != null) {
+      right.traversePostOrder();
+    }
+    System.out.println(value + " ");
   }
 
   public int getValue() {
