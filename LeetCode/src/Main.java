@@ -271,8 +271,8 @@ public class Main {
     if (root == null) {
       return 0;
     } else {
-      int leftDepth = maxDepth(root.left);
-      int rightDepth = maxDepth(root.right);
+      int leftDepth = maxDepth(root.getLeft());
+      int rightDepth = maxDepth(root.getRight());
 
       return leftDepth > rightDepth ? leftDepth + 1 : rightDepth + 1;
     }
@@ -283,17 +283,17 @@ public class Main {
     if (root == null) {
       return 0;
     }
-    if (root.left == null && root.right == null) {
+    if (root.getLeft() == null && root.getRight() == null) {
       return 1;
     }
-    if (root.left == null) {
-      return minDepth(root.right) + 1;
+    if (root.getLeft() == null) {
+      return minDepth(root.getRight()) + 1;
     }
-    if (root.right == null) {
-      return minDepth(root.left) + 1;
+    if (root.getRight() == null) {
+      return minDepth(root.getLeft()) + 1;
     }
 
-    return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+    return Math.min(minDepth(root.getLeft()), minDepth(root.getRight())) + 1;
   }
 
   //Invert a binary tree.
@@ -302,12 +302,12 @@ public class Main {
       return root;
     }
 
-    TreeNode temp = root.right;
-    root.right = root.left;
-    root.left = temp;
+    TreeNode temp = root.getRight();
+    root.setRight(root.getLeft());
+    root.setLeft(temp);
 
-    invertTree(root.left);
-    invertTree(root.right);
+    invertTree(root.getLeft());
+    invertTree(root.getRight());
 
     return root;
   }
