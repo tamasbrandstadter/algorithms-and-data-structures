@@ -1170,4 +1170,15 @@ public class Main {
     return n % 4 != 0;
   }
 
+  //Given two strings s and t, write a function to determine if t is an anagram of s.
+  private static boolean isAnagram(String s, String t) {
+    char[] a = s.toCharArray();
+    Arrays.sort(a);
+
+    char[] a1 = t.toCharArray();
+    Arrays.sort(a1);
+
+    return Arrays.equals(a, a1);
+  }
+
 }
