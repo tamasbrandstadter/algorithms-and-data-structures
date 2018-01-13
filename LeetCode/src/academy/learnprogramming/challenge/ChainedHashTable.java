@@ -1,15 +1,15 @@
 package academy.learnprogramming.challenge;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.ListIterator;
-import java.util.stream.IntStream;
 
 public class ChainedHashTable {
   private LinkedList<StoredEmployee>[] hashTable;
 
   public ChainedHashTable() {
     this.hashTable = new LinkedList[10];
-    IntStream.rangeClosed(0, hashTable.length).forEachOrdered(i -> hashTable[i] = new LinkedList<>());
+    Arrays.setAll(hashTable, i -> new LinkedList<>());
   }
 
   public void put(String key, Employee employee) {

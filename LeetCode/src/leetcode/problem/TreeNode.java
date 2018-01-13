@@ -75,7 +75,7 @@ public class TreeNode {
   }
 
   //root -> left subtree -> right subtree
-  public void traversePreOrder(){
+  public void traversePreOrder() {
     System.out.println(value + " ");
     if (left != null) {
       left.traversePreOrder();
@@ -86,7 +86,7 @@ public class TreeNode {
   }
 
   //from leaves to root, left and right
-  public void traversePostOrder(){
+  public void traversePostOrder() {
     if (left != null) {
       left.traversePostOrder();
     }

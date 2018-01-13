@@ -941,7 +941,7 @@ public class Main {
 
   //solution with streams:
   private static int missingNumberWithStream(int[] nums) {
-    return IntStream.rangeClosed(0, nums.length).filter(i -> IntStream.of(nums).noneMatch(j -> i == j)).findFirst().getAsInt();
+    return IntStream.rangeClosed(0, nums.length).filter(i -> IntStream.of(nums).noneMatch(j -> i == j)).findFirst().orElse(-1);
   }
 
   //Given a string s consists of upper/lower-case alphabets and empty space characters ' ', return the length of last word in the string.
@@ -1141,7 +1141,7 @@ public class Main {
     return (int) (fibonacciNumber / sqrt5);
   }
 
-  //Determine whether a String is a palindrome. Strings may contain punctuation and spaces, they should be ignored, just like case.
+  //Determine whether a string is a palindrome. Strings may contain punctuation and spaces, they should be ignored, just like case.
   private static boolean checkForPalindrome(String s) {
     Deque<Character> stack = new LinkedList<>();
     String alphabet = "abcdefghijklmnopqrstuvwxyz";
