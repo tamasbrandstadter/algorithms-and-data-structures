@@ -1318,4 +1318,22 @@ public class Main {
     return indices;
   }
 
+  //Given a string, find the first non-repeating character in it and return it's index. If it doesn't exist, return -1.
+  private static int firstUniqChar(String s) {
+    int[] frequency = new int[26];
+
+    for (int i = 0; i < s.length(); i++) {
+      char c = s.charAt(i);
+      frequency[c - 'a']++;
+    }
+
+    for (int i = 0; i < s.length(); i++) {
+      if (frequency[s.charAt(i) - 'a'] == 1) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
 }
