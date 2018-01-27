@@ -1258,4 +1258,23 @@ public class Main {
     return indices;
   }
 
+  //Given a binary tree, return the inorder traversal of its nodes' values.
+  private static List<Integer> inorderTraversal(TreeNode root) {
+    List<Integer> values = new ArrayList<>();
+
+    visit(root, values);
+
+    return values;
+  }
+
+  private static void visit(TreeNode root, List<Integer> values) {
+    if (root == null) {
+      return;
+    }
+
+    visit(root.getLeft(), values);
+    values.add(root.getValue());
+    visit(root.getRight(), values);
+  }
+
 }
