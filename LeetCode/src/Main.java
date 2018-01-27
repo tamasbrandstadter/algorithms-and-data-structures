@@ -331,6 +331,39 @@ public class Main {
     visit(root.getRight(), values);
   }
 
+  //Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
+  private static List<List<Integer>> levelOrder(TreeNode root) {
+    List<List<Integer>> treeValues = new ArrayList<>();
+
+    if (root == null) {
+      return treeValues;
+    }
+
+    Deque<TreeNode> queue = new LinkedList<>();
+    queue.addFirst(root);
+
+    while (!queue.isEmpty()) {
+      List<Integer> levelValues = new LinkedList<>();
+      int nodeCount = queue.size();
+
+      for (int i = 0; i < nodeCount; i++) {
+        TreeNode visitedNode = queue.poll();
+        levelValues.add(visitedNode.getValue());
+
+        if (visitedNode.getLeft() != null) {
+          queue.add(visitedNode.getLeft());
+        }
+        if (visitedNode.getRight() != null) {
+          queue.add(visitedNode.getRight());
+        }
+      }
+
+      treeValues.add(levelValues);
+    }
+
+    return treeValues;
+  }
+
   //You have a total of n coins that you want to form in a staircase shape, where every k-th row must have exactly k coins.
   //Given n, find the total number of full staircase rows that can be formed.
   //n is a non-negative integer and fits within the range of a 32-bit signed integer.
