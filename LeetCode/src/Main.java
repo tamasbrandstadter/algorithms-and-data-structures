@@ -312,6 +312,25 @@ public class Main {
     return root;
   }
 
+  //Given a binary tree, return the inorder traversal of its nodes' values.
+  private static List<Integer> inorderTraversal(TreeNode root) {
+    List<Integer> values = new ArrayList<>();
+
+    visit(root, values);
+
+    return values;
+  }
+
+  private static void visit(TreeNode root, List<Integer> values) {
+    if (root == null) {
+      return;
+    }
+
+    visit(root.getLeft(), values);
+    values.add(root.getValue());
+    visit(root.getRight(), values);
+  }
+
   //You have a total of n coins that you want to form in a staircase shape, where every k-th row must have exactly k coins.
   //Given n, find the total number of full staircase rows that can be formed.
   //n is a non-negative integer and fits within the range of a 32-bit signed integer.
@@ -1256,25 +1275,6 @@ public class Main {
     }
 
     return indices;
-  }
-
-  //Given a binary tree, return the inorder traversal of its nodes' values.
-  private static List<Integer> inorderTraversal(TreeNode root) {
-    List<Integer> values = new ArrayList<>();
-
-    visit(root, values);
-
-    return values;
-  }
-
-  private static void visit(TreeNode root, List<Integer> values) {
-    if (root == null) {
-      return;
-    }
-
-    visit(root.getLeft(), values);
-    values.add(root.getValue());
-    visit(root.getRight(), values);
   }
 
 }
