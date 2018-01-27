@@ -1237,4 +1237,25 @@ public class Main {
     return mappings;
   }
 
+  //Given a string s and a non-empty string p, find all the start indices of p's anagrams in s.
+  //Strings consists of lowercase English letters only and the length of both strings s and p will not be larger than 20,100.
+  //The order of output does not matter.
+  private static List<Integer> findAnagrams(String s, String p) {
+    List<Integer> indices = new ArrayList<>();
+
+    char[] chars = p.toCharArray();
+    Arrays.sort(chars);
+
+    for (int i = 0; i <= s.length() - p.length(); i++) {
+      char[] temp = s.substring(i, i + p.length()).toCharArray();
+      Arrays.sort(temp);
+
+      if (Arrays.equals(chars, temp)) {
+        indices.add(i);
+      }
+    }
+
+    return indices;
+  }
+
 }
