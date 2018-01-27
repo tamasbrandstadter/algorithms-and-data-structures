@@ -567,6 +567,23 @@ public class Main {
     return res;
   }
 
+  //other solution:
+  private static char findTheDifference2(String s, String t) {
+    char[] chars = s.toCharArray();
+    Arrays.sort(chars);
+
+    char[] chars2 = t.toCharArray();
+    Arrays.sort(chars2);
+
+    for (int i = 0; i <= chars.length - 1; i++) {
+      if (chars[i] != chars2[i]) {
+        return chars2[i];
+      }
+    }
+
+    return chars2[chars2.length - 1];
+  }
+
   //Write a function to find the longest common prefix string amongst an array of strings.
   private static String longestCommonPrefix(String[] strs) {
     StringBuilder result = new StringBuilder();
@@ -1179,6 +1196,45 @@ public class Main {
     Arrays.sort(a1);
 
     return Arrays.equals(a, a1);
+  }
+
+  /*In a given integer array nums, there is always exactly one largest element.
+  Find whether the largest element in the array is at least twice as much as every other number in the array.
+  If it is, return the index of the largest element, otherwise return -1.*/
+  private static int dominantIndex(int[] nums) {
+    int maxIndex = 0;
+
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] > nums[maxIndex]) {
+        maxIndex = i;
+      }
+    }
+
+    for (int i = 0; i < nums.length; i++) {
+      if (i != maxIndex && nums[maxIndex] < (nums[i] * 2)) {
+        return -1;
+      }
+    }
+
+    return maxIndex;
+  }
+
+  /*Given two lists A and B, and B is an anagram of A. B is an anagram of A means B is made by randomizing the order of the elements in A.
+  We want to find an index mapping P, from A to B. A mapping P[i] = j means the ith element in A appears in B at index j.
+  These lists A and B may contain duplicates. If there are multiple answers, output any of them.*/
+  private static int[] anagramMappings(int[] a, int[] b) {
+    List<Integer> aList = Arrays.stream(a).boxed().collect(Collectors.toList());
+    List<Integer> bList = Arrays.stream(b).boxed().collect(Collectors.toList());
+
+    int[] mappings = new int[a.length];
+
+    for (int i = 0; i < aList.size(); i++) {
+      if (bList.contains(aList.get(i))) {
+        mappings[i] = bList.indexOf(aList.get(i));
+      }
+    }
+
+    return mappings;
   }
 
 }
