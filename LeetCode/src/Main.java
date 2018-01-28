@@ -1366,4 +1366,30 @@ public class Main {
     return counter;
   }
 
+  //Given a string, sort it in decreasing order based on the frequency of characters.
+  private static String frequencySort(String s) {
+    Map<Character, Integer> characters = new HashMap<>();
+
+    for (char c : s.toCharArray()) {
+      characters.put(c, characters.getOrDefault(c, 0) + 1);
+    }
+
+    List<Map.Entry<Character, Integer>> sortedMapEntries =
+        characters.entrySet().stream()
+            .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+            .collect(Collectors.toList());
+
+    StringBuilder sb = new StringBuilder();
+
+    for (Map.Entry<Character, Integer> sortedMapEntry : sortedMapEntries) {
+      int times = sortedMapEntry.getValue();
+      while (times != 0) {
+        sb.append(sortedMapEntry.getKey());
+        times--;
+      }
+    }
+
+    return sb.toString();
+  }
+
 }
