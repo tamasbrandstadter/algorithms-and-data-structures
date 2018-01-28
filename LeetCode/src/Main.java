@@ -1336,4 +1336,13 @@ public class Main {
     return -1;
   }
 
+  //Given an input string, reverse the string word by word. Given s = "the sky is blue" return "blue is sky the".
+  private static String reverseWords(String s) {
+    String[] words = s.trim().split(" +");
+
+    Collections.reverse(Arrays.asList(words));
+
+    return String.join(" ", words);
+  }
+
 }
