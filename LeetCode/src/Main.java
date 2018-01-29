@@ -1392,4 +1392,33 @@ public class Main {
     return sb.toString();
   }
 
+  //Given scores of N athletes, find their relative ranks and the people with the top three highest scores,
+  //who will be awarded medals: "Gold Medal", "Silver Medal" and "Bronze Medal".
+  private static String[] findRelativeRanks(int[] nums) {
+    int[] scores = new int[nums.length];
+    System.arraycopy(nums, 0, scores, 0, nums.length);
+    Arrays.sort(scores);
+
+    Map<Integer, String> scoreToMedal = new LinkedHashMap<>();
+
+    for (int i = scores.length - 1, j = 3; i >= 0; i--) {
+      if (i == scores.length - 1) {
+        scoreToMedal.put(scores[i], "Gold Medal");
+      } else if (i == scores.length - 2) {
+        scoreToMedal.put(scores[i], "Silver Medal");
+      } else if (i == scores.length - 3) {
+        scoreToMedal.put(scores[i], "Bronze Medal");
+      } else {
+        scoreToMedal.put(scores[i], String.format("%d", ++j));
+      }
+    }
+
+    String[] results = new String[nums.length];
+    for (int i = 0; i < nums.length; i++) {
+      results[i] = scoreToMedal.get(nums[i]);
+    }
+
+    return results;
+  }
+
 }
