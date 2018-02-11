@@ -939,6 +939,49 @@ public class Main {
     return true;
   }
 
+  //You are given two non-empty linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contain a single digit.
+  //Add the two numbers and return it as a linked list
+  //You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+  private static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    if (l1.val == 0 && l2.val == 0) {
+      return new ListNode(0);
+    }
+    Deque<Integer> firstListStack = new LinkedList<>();
+    Deque<Integer> secondListStack = new LinkedList<>();
+
+    while (l1 != null) {
+      firstListStack.push(l1.val);
+      l1 = l1.next;
+    }
+
+    while (l2 != null) {
+      secondListStack.push(l2.val);
+      l2 = l2.next;
+    }
+
+    int power = 0;
+    int sum = 0;
+    while (!firstListStack.isEmpty() || !secondListStack.isEmpty()) {
+      if (!firstListStack.isEmpty()) {
+        sum += (int) (firstListStack.pop() * (Math.pow(10, power)));
+      }
+      if (!secondListStack.isEmpty()) {
+        sum += (int) (secondListStack.pop() * (Math.pow(10, power)));
+      }
+      power++;
+    }
+
+    ListNode head = new ListNode(0);
+    while (sum != 0) {
+      ListNode next = new ListNode(sum % 10);
+      next.next = head.next;
+      head.next = next;
+      sum /= 10;
+    }
+
+    return head.val == 0 ? head.next : head;
+  }
+
   //Given a positive integer, check whether it has alternating bits: namely, if two adjacent bits will always have different values.
   private static boolean hasAlternatingBits(int n) {
     char[] binaryChars = Integer.toBinaryString(n).toCharArray();
