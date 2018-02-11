@@ -1536,4 +1536,38 @@ public class Main {
     return bits;
   }
 
+  //Given a list of words, return the words that can be typed using letters of alphabet on only one row's of American keyboard like the image below.
+  private static String[] findWords(String[] words) {
+    Map<Character, Integer> keyboard = new HashMap<>();
+    String chars = "qwertyuiop|asdfghjkl|zxcvbnm";
+
+    int line = 1;
+    for (int i = 0; i < chars.length(); i++) {
+      if (chars.charAt(i) == '|') {
+        line++;
+        continue;
+      }
+      keyboard.put(chars.charAt(i), line);
+    }
+
+    List<String> list = new ArrayList<>();
+
+    for (String word : words) {
+      int index = keyboard.get(word.toLowerCase().charAt(0));
+
+      for (int i = 1; i < word.length(); i++) {
+        if (keyboard.get(word.toLowerCase().charAt(i)) != index) {
+          index = -1;
+          break;
+        }
+      }
+      if (index != -1) {
+        list.add(word);
+      }
+    }
+
+    String[] results = list.toArray(new String[] {});
+    return results;
+  }
+
 }
