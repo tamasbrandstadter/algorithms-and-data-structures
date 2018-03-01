@@ -13,6 +13,7 @@ gradle/wrapper/gradle-wrapper.properties
 .project
 .settings
 .springBeans
+algs4.jar
 
 *.iws
 *.ipr
