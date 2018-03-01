@@ -42,11 +42,17 @@ public class Deque<Item> implements Iterable<Item> {
       throw new IllegalArgumentException();
     }
     size++;
-    Node oldLast = last;
-    last = new Node();
-    last.item = item;
-    last.previous = oldLast;
-    oldLast.next = last;
+    if (isEmpty()) {
+      first = new Node();
+      first.item = item;
+      last = first;
+    } else {
+      Node oldLast = last;
+      last = new Node();
+      last.item = item;
+      last.previous = oldLast;
+      oldLast.next = last;
+    }
   }
 
   public Item removeFirst() {
