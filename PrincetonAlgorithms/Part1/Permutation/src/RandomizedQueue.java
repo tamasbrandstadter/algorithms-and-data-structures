@@ -72,10 +72,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     public ListIterator() {
       this.temp = (Item[]) new Object[n];
-      for (int i = 0; i < queue.length; i++) {
-        if (queue[i] != null) {
+      for (int i = 0; i < n; i++) {
           temp[i] = queue[i];
-        }
       }
       StdRandom.shuffle(temp);
     }
