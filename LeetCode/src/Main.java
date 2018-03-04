@@ -9,6 +9,13 @@ import java.util.stream.LongStream;
 
 public class Main {
   public static void main(String[] args) {
+    //    BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+    //    bst.insert(5);
+    //    bst.insert(7);
+    //    bst.insert(11);
+    //    bst.insert(1);
+    //    bst.insert(-1);
+    //    bst.traverse();
   }
 
   //Given an array of integers, return indices of the two numbers such that they add up to a specific target.
@@ -1568,6 +1575,24 @@ public class Main {
 
     String[] results = list.toArray(new String[] {});
     return results;
+  }
+
+  //Given a binary array, find the maximum number of consecutive 1s in this array.
+  private static int findMaxConsecutiveOnes(int[] nums) {
+    int maxSoFar = 0;
+    int currentMax = 0;
+
+    for (int num : nums) {
+      if (num == 1) {
+        currentMax++;
+        if (currentMax > maxSoFar) {
+          maxSoFar = currentMax;
+        }
+      } else {
+        currentMax = 0;
+      }
+    }
+    return maxSoFar;
   }
 
 }
