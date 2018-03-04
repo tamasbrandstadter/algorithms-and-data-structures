@@ -9,13 +9,6 @@ import java.util.stream.LongStream;
 
 public class Main {
   public static void main(String[] args) {
-    //    BinarySearchTree<Integer> bst = new BinarySearchTree<>();
-    //    bst.insert(5);
-    //    bst.insert(7);
-    //    bst.insert(11);
-    //    bst.insert(1);
-    //    bst.insert(-1);
-    //    bst.traverse();
   }
 
   //Given an array of integers, return indices of the two numbers such that they add up to a specific target.
