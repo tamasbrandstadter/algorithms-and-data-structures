@@ -67,7 +67,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
       //Case 3: found node with 2 children
       //find predecessor: rightmost(greatest) node from left subtree
       TreeNode<T> predecessor = getPredecessor(node.getLeft());
-      //update reference
+      //update reference using previous cases
       node.setData(predecessor.getData());
       node.setLeft(remove(predecessor.getData(), node.getLeft()));
     }
