@@ -3,8 +3,8 @@ package holczer.udemy;
 import java.util.Stack;
 
 public class DijkstraInterpreter {
-  Stack<String> operators;
-  Stack<Double> operands;
+  private Stack<String> operators;
+  private Stack<Double> operands;
 
   public DijkstraInterpreter() {
     this.operators = new Stack<>();
