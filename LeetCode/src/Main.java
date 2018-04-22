@@ -1588,4 +1588,45 @@ public class Main {
     return maxSoFar;
   }
 
+  // Given a list of words, each word can be written as a concatenation of the Morse code of each letter.
+  // For example, "cab" can be written as "-.-.-....-", (which is the concatenation "-.-." + "-..." + ".-").
+  // We'll call such a concatenation, the transformation of a word.
+  // Return the number of different transformations among all words we have.
+  private static int uniqueMorseRepresentations(String[] words) {
+    if (words.length == 0) {
+      return 0;
+    }
+
+    if (words.length == 1) {
+      return 1;
+    }
+
+    char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+    String[] codedAlphabet = new String[] {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.",
+        "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
+
+    Map<Character, String> mappings = new HashMap<>();
+    for (int i = 0; i < codedAlphabet.length; i++) {
+      mappings.put(alphabet[i], codedAlphabet[i]);
+    }
+
+    String join = String.join(",", words);
+
+    Set<String> transformations = new HashSet<>();
+
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < join.length(); i++) {
+      if (join.charAt(i) == ',') {
+        transformations.add(sb.toString());
+        sb.setLength(0);
+      } else {
+        sb.append(mappings.get(join.charAt(i)));
+      }
+    }
+
+    transformations.add(sb.toString());
+
+    return transformations.size();
+  }
+
 }
