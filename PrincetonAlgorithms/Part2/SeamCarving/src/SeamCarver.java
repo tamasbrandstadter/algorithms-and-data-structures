@@ -20,7 +20,7 @@ public class SeamCarver {
     }
 
     public Picture picture() {
-        return new Picture(picture);
+        return picture;
     }
 
     public int width() {
@@ -83,7 +83,6 @@ public class SeamCarver {
             throw new IllegalArgumentException();
         }
 
-        double[][] recalculatedEnergies = new double[picture.height() - 1][picture.width()];
         Picture resized = new Picture(this.picture.width(), this.picture.height() - 1);
 
         for (int i = 0; i < resized.width(); i++) {
@@ -92,14 +91,13 @@ public class SeamCarver {
                 if (j == seam[i]) {
                     k++;
                 }
-                recalculatedEnergies[j][i] = energies[k][i];
                 resized.setRGB(i, j, this.picture.getRGB(i, k++));
             }
         }
 
         this.picture = resized;
 
-        recalculateAfterHorizontalRemove(seam, recalculatedEnergies);
+        recalculateEnergy();
     }
 
     public void removeVerticalSeam(int[] seam) {
@@ -111,7 +109,6 @@ public class SeamCarver {
             throw new IllegalArgumentException();
         }
 
-        double[][] recalculatedEnergies = new double[picture.height()][picture.width() - 1];
         Picture resized = new Picture(this.picture.width() - 1, this.picture.height());
 
         for (int i = 0; i < resized.height(); i++) {
@@ -126,7 +123,7 @@ public class SeamCarver {
 
         this.picture = resized;
 
-        recalculateAfterVerticalRemove(seam, recalculatedEnergies);
+        recalculateEnergy();
     }
 
     private boolean isValidHorizontalSeam(int[] seam) {
@@ -213,26 +210,16 @@ public class SeamCarver {
         return Math.pow(redTop - redBottom, 2) + Math.pow(blueTop - blueBottom, 2) + Math.pow(greenTop - greenBottom, 2);
     }
 
-    private void recalculateAfterHorizontalRemove(int[] seam, double[][] recalculatedEnergies) {
-        for (int i = 0; i < recalculatedEnergies[0].length; i++) {
-            if (seam[i] > 0) {
-                recalculatedEnergies[seam[i] - 1][i] = calculateEnergy(i, seam[i] - 1);
+    private void recalculateEnergy() {
+        double[][] recalculated = new double[this.picture.height()][this.picture.width()];
+
+        for (int i = 0; i < recalculated.length; i++) {
+            for (int j = 0; j < recalculated[i].length; j++) {
+                recalculated[i][j] = calculateEnergy(j, i);
             }
-            recalculatedEnergies[seam[i]][i] = calculateEnergy(i, seam[i]);
         }
 
-        this.energies = recalculatedEnergies;
-    }
-
-    private void recalculateAfterVerticalRemove(int[] seam, double[][] recalculatedEnergies) {
-        for (int i = 0; i < recalculatedEnergies.length; i++) {
-            if (seam[i] > 0) {
-                recalculatedEnergies[i][seam[i] - 1] = calculateEnergy(seam[i] - 1, i);
-            }
-            recalculatedEnergies[i][seam[i]] = calculateEnergy(seam[i], i);
-        }
-
-        this.energies = recalculatedEnergies;
+        this.energies = recalculated;
     }
 
     private double[][] transform() {
