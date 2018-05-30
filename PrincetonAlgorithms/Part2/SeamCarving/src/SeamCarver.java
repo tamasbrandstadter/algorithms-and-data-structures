@@ -14,7 +14,11 @@ public class SeamCarver {
 
         for (int i = 0; i < energies.length; i++) {
             for (int j = 0; j < energies[i].length; j++) {
-                energies[i][j] = calculateEnergy(j, i);
+                if (i == 0 || j == 0 || i == energies.length - 1 || j == energies[i].length - 1) {
+                    energies[i][j] = 1000;
+                } else {
+                    energies[i][j] = calculateEnergy(j, i);
+                }
             }
         }
     }
@@ -215,7 +219,11 @@ public class SeamCarver {
 
         for (int i = 0; i < recalculated.length; i++) {
             for (int j = 0; j < recalculated[i].length; j++) {
-                recalculated[i][j] = calculateEnergy(j, i);
+                if (i == 0 || j == 0 || i == energies.length - 1 || j == energies[i].length - 1) {
+                    energies[i][j] = 1000;
+                } else {
+                    recalculated[i][j] = calculateEnergy(j, i);
+                }
             }
         }
 
