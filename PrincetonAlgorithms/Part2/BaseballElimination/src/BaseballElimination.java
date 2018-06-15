@@ -12,8 +12,7 @@ import java.util.Map;
 public class BaseballElimination {
     private final int numberOfTeams;
     private final List<String> teamNames;
-    private final List<Team> teams;
-    private final Map<String, Team> teamMap;
+    private final Map<String, Team> teams;
     private List<String> certificate;
     private FlowNetwork network;
 
@@ -21,8 +20,7 @@ public class BaseballElimination {
         In in = new In(filename);
         this.numberOfTeams = Integer.parseInt(in.readLine());
         this.teamNames = new ArrayList<>();
-        this.teams = new ArrayList<>();
-        this.teamMap = new HashMap<>();
+        this.teams = new HashMap<>();
 
         String[] lines = in.readAllLines();
         for (int i = 0; i < lines.length; i++) {
@@ -43,8 +41,7 @@ public class BaseballElimination {
                 team.gamesAgainstTeams[index++] = Integer.parseInt(split[j]);
             }
 
-            teams.add(team);
-            teamMap.put(teamName, team);
+            teams.put(teamName, team);
         }
     }
 
@@ -57,41 +54,41 @@ public class BaseballElimination {
     }
 
     public int wins(String team) {
-        if (team == null || !teamMap.containsKey(team)) {
+        if (team == null || !teams.containsKey(team)) {
             throw new IllegalArgumentException();
         }
 
-        return teamMap.get(team).wins;
+        return teams.get(team).wins;
     }
 
     public int losses(String team) {
-        if (team == null || !teamMap.containsKey(team)) {
+        if (team == null || !teams.containsKey(team)) {
             throw new IllegalArgumentException();
         }
 
-        return teamMap.get(team).losses;
+        return teams.get(team).losses;
     }
 
     public int remaining(String team) {
-        if (team == null || !teamMap.containsKey(team)) {
+        if (team == null || !teams.containsKey(team)) {
             throw new IllegalArgumentException();
         }
 
-        return teamMap.get(team).remaining;
+        return teams.get(team).remaining;
     }
 
     public int against(String team1, String team2) {
-        if (team1 == null || team2 == null || !teamMap.containsKey(team1) || !teamMap.containsKey(team2)) {
+        if (team1 == null || team2 == null || !teams.containsKey(team1) || !teams.containsKey(team2)) {
             throw new IllegalArgumentException();
         }
 
-        Team firstTeam = teamMap.get(team1);
-        int secondTeamIndex = teamMap.get(team2).index;
+        Team firstTeam = teams.get(team1);
+        int secondTeamIndex = teams.get(team2).index;
         return firstTeam.gamesAgainstTeams[secondTeamIndex];
     }
 
     public boolean isEliminated(String team) {
-        if (team == null || !teamMap.containsKey(team)) {
+        if (team == null || !teams.containsKey(team)) {
             throw new IllegalArgumentException();
         }
 
@@ -111,7 +108,7 @@ public class BaseballElimination {
     }
 
     public Iterable<String> certificateOfElimination(String team) {
-        if (team == null || !teamMap.containsKey(team)) {
+        if (team == null || !teams.containsKey(team)) {
             throw new IllegalArgumentException();
         }
 
@@ -124,40 +121,40 @@ public class BaseballElimination {
 
     private void populateNetwork(String team) {
         int n = numberOfTeams - 2;
-        int numberOfMatches = n * (n + 1) / 2;
-        this.network = new FlowNetwork(2 + numberOfTeams - 1 + numberOfMatches);
+        int totalMatches = n * (n + 1) / 2;
+        this.network = new FlowNetwork(2 + numberOfTeams - 1 + totalMatches);
 
-        Team t1 = teamMap.get(team);
+        Team examinedTeam = teams.get(team);
         List<String> filteredTeams = new ArrayList<>(teamNames);
         filteredTeams.remove(team);
 
         int temp = 1;
         for (int i = 0; i < filteredTeams.size(); i++) {
-            Team t2 = teamMap.get(filteredTeams.get(i));
+            Team otherTeam = teams.get(filteredTeams.get(i));
             for (int j = i + 1; j < filteredTeams.size(); j++) {
-                int remaining = t2.gamesAgainstTeams[teamNames.indexOf(filteredTeams.get(j))];
-                network.addEdge(new FlowEdge(0, temp, remaining));
-                network.addEdge(new FlowEdge(temp, 1 + numberOfMatches + i, Double.POSITIVE_INFINITY));
-                network.addEdge(new FlowEdge(temp++, 1 + numberOfMatches + j, Double.POSITIVE_INFINITY));
+                int remainingMatches = otherTeam.gamesAgainstTeams[teamNames.indexOf(filteredTeams.get(j))];
+                network.addEdge(new FlowEdge(0, temp, remainingMatches));
+                network.addEdge(new FlowEdge(temp, 1 + totalMatches + i, Double.POSITIVE_INFINITY));
+                network.addEdge(new FlowEdge(temp++, 1 + totalMatches + j, Double.POSITIVE_INFINITY));
             }
-            int capacity = t1.wins + t1.remaining - t2.wins;
-            network.addEdge(new FlowEdge(1 + numberOfMatches + i, network.V() - 1, capacity));
+            int capacity = examinedTeam.wins + examinedTeam.remaining - otherTeam.wins;
+            network.addEdge(new FlowEdge(1 + totalMatches + i, network.V() - 1, capacity));
         }
 
         FordFulkerson fordFulkerson = new FordFulkerson(network, 0, network.V() - 1);
 
         this.certificate = new ArrayList<>();
         for (int i = 0; i < filteredTeams.size(); i++) {
-            if (fordFulkerson.inCut(1 + numberOfMatches + i)) {
+            if (fordFulkerson.inCut(1 + totalMatches + i)) {
                 certificate.add(filteredTeams.get(i));
             }
         }
     }
 
     private boolean trivial(String team) {
-        int possibleWins = teamMap.get(team).wins + teamMap.get(team).remaining;
+        int possibleWins = teams.get(team).wins + teams.get(team).remaining;
 
-        return teamMap.values().stream().anyMatch(t -> t.wins > possibleWins);
+        return teams.values().stream().anyMatch(t -> t.wins > possibleWins);
     }
 
     private class Team {
