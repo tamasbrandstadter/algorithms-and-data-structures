@@ -1644,4 +1644,9 @@ public class Main {
         return flipped;
     }
 
+    // Given two integers, find their greatest common divisor.
+    private static int gcd(int x, int y) {
+        return y == 0 ? x : gcd(y, x % y);
+    }
+
 }
