@@ -1649,4 +1649,31 @@ public class Main {
         return y == 0 ? x : gcd(y, x % y);
     }
 
+
+    // Given a number n, write a function that returns true when it is a perfect number and false when it is not.
+    private static boolean isPerfectNumber(long number) {
+        List<Long> factors = findFactors(number);
+        long sum = 0;
+
+        for (Long factor : factors) {
+            sum += factor;
+        }
+
+        return sum == number;
+    }
+
+    private static List<Long> findFactors(long number) {
+        List<Long> factors = new LinkedList<>();
+        factors.add(1L);
+
+        for (long i = 2; i < Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                factors.add(i);
+                factors.add(number / i);
+            }
+        }
+
+        return factors;
+    }
+
 }
