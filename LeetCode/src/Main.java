@@ -8,8 +8,8 @@ public class Main {
     public static void main(String[] args) {
     }
 
-    //  Given an array of integers, return indices of the two numbers such that they add up to a specific target.
-    //  You may assume that each input would have exactly one solution, and you may not use the same element twice.
+    // Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+    // You may assume that each input would have exactly one solution, and you may not use the same element twice.
     private static int[] twoSum(int[] nums, int target) {
         for (int i = 0; i < nums.length; i++) {
             for (int j = 1; j >= i; j++) {
@@ -21,8 +21,8 @@ public class Main {
         return null;
     }
 
-    //  Reverse digits of an integer.
-    //  The input is assumed to be a 32-bit signed integer. Your function should return 0 when the reversed integer overflows.
+    // Reverse digits of an integer.
+    // The input is assumed to be a 32-bit signed integer. Your function should return 0 when the reversed integer overflows.
     private static int reverseInteger(int x) {
         long reverse = 0;
 
@@ -742,12 +742,12 @@ public class Main {
         return sb.toString();
     }
 
-    /*Given a word, you need to judge whether the usage of capitals in it is right or not.
+    /* Given a word, you need to judge whether the usage of capitals in it is right or not.
     We define the usage of capitals in a word to be right when one of the following cases holds:
     All letters in this word are capitals, like "USA".
     All letters in this word are not capitals, like "leetcode".
     Only the first letter in this word is capital if it has more than one letter, like "Google".
-    Otherwise, we define that this word doesn't use capitals in a right way.*/
+    Otherwise, we define that this word doesn't use capitals in a right way. */
     private static boolean detectCapitalUse(String word) {
         return word.matches("^[A-Z][A-Z]*[A-Z]*$") || word.matches("^[A-Z][a-z]*[a-z]$") || word.matches("^[a-z][a-z]*[a-z]*$");
     }
@@ -852,9 +852,9 @@ public class Main {
         return nums[nums.length - 1];
     }
 
-    /*Given a non-negative integer represented as a non-empty array of digits, plus one to the integer.
+    /* Given a non-negative integer represented as a non-empty array of digits, plus one to the integer.
     You may assume the integer do not contain any leading zero, except the number 0 itself.
-    The digits are stored such that the most significant digit is at the head of the list.*/
+    The digits are stored such that the most significant digit is at the head of the list. */
     private static int[] plusOne(int[] digits) {
         for (int i = digits.length - 1; i >= 0; i--) {
             if (digits[i] != 9) {
@@ -890,10 +890,10 @@ public class Main {
         return nums[nums.length / 2];
     }
 
-    /*Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
+    /* Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
     The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2.
     Please note that your returned answers (both index1 and index2) are not zero-based.
-    You may assume that each input would have exactly one solution and you may not use the same element twice.*/
+    You may assume that each input would have exactly one solution and you may not use the same element twice. */
     private static int[] twoSum2(int[] numbers, int target) {
         Map<Integer, Integer> sumMap = new HashMap<>();
 
@@ -1115,9 +1115,9 @@ public class Main {
         return temp.next;
     }
 
-    /*Given an array of integers sorted in ascending order, find the starting and ending position of a given target value.
+    /* Given an array of integers sorted in ascending order, find the starting and ending position of a given target value.
     Your algorithm's runtime complexity must be in the order of O(log n).
-    If the target is not found in the array, return [-1, -1].*/
+    If the target is not found in the array, return [-1, -1]. */
     private static int[] searchRange(int[] nums, int target) {
         int upper = findBound(nums, target, true);
         int lower = findBound(nums, target, false);
@@ -1150,11 +1150,11 @@ public class Main {
         return res;
     }
 
-    /*You are a product manager and currently leading a team to develop a new product.
+    /* You are a product manager and currently leading a team to develop a new product.
     Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version,
     all the versions after a bad version are also bad. Suppose you have n versions [1, 2, ..., n] and you want to find out the first bad one,
     which causes all the following ones to be bad. You are given an API bool isBadVersion(version) which will return whether version is bad
-    Implement a function to find the first bad version. You should minimize the number of calls to the API.*/
+    Implement a function to find the first bad version. You should minimize the number of calls to the API. */
     private static int firstBadVersionRecursively(int n) {
         if (isBadVersion(n)) {
             return n;
@@ -1184,9 +1184,9 @@ public class Main {
         return version == 1;
     }
 
-    /*We are playing the Guess Game. The game is as follows:
+    /* We are playing the Guess Game. The game is as follows:
     I pick a number from 1 to n. You have to guess which number I picked.
-    Every time you guess wrong, I'll tell you whether the number is higher or lower.*/
+    Every time you guess wrong, I'll tell you whether the number is higher or lower. */
     private static int guessNumber(int n) {
         int left = 1;
         int right = n;
@@ -1277,11 +1277,11 @@ public class Main {
         return true;
     }
 
-    /*You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones.
+    /* You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones.
     The one who removes the last stone will be the winner. You will take the first turn to remove the stones.
     Both of you are very clever and have optimal strategies for the game.
     Write a function to determine whether you can win the game given the number of stones in the heap. For example, if there are 4 stones in the heap,
-    then you will never win the game: no matter 1, 2, or 3 stones you remove, the last stone will always be removed by your friend.*/
+    then you will never win the game: no matter 1, 2, or 3 stones you remove, the last stone will always be removed by your friend. */
     private static boolean canWinNim(int n) {
         return n % 4 != 0;
     }
@@ -1297,9 +1297,9 @@ public class Main {
         return Arrays.equals(a, a1);
     }
 
-    /*In a given integer array nums, there is always exactly one largest element.
+    /* In a given integer array nums, there is always exactly one largest element.
     Find whether the largest element in the array is at least twice as much as every other number in the array.
-    If it is, return the index of the largest element, otherwise return -1.*/
+    If it is, return the index of the largest element, otherwise return -1. */
     private static int dominantIndex(int[] nums) {
         int maxIndex = 0;
 
@@ -1318,9 +1318,9 @@ public class Main {
         return maxIndex;
     }
 
-    /*Given two lists A and B, and B is an anagram of A. B is an anagram of A means B is made by randomizing the order of the elements in A.
+    /* Given two lists A and B, and B is an anagram of A. B is an anagram of A means B is made by randomizing the order of the elements in A.
     We want to find an index mapping P, from A to B. A mapping P[i] = j means the ith element in A appears in B at index j.
-    These lists A and B may contain duplicates. If there are multiple answers, output any of them.*/
+    These lists A and B may contain duplicates. If there are multiple answers, output any of them. */
     private static int[] anagramMappings(int[] a, int[] b) {
         List<Integer> aList = Arrays.stream(a).boxed().collect(Collectors.toList());
         List<Integer> bList = Arrays.stream(b).boxed().collect(Collectors.toList());
@@ -1384,9 +1384,9 @@ public class Main {
         return String.join(" ", words);
     }
 
-    /*You're given strings J representing the types of stones that are jewels, and S representing the stones you have.
+    /* You're given strings J representing the types of stones that are jewels, and S representing the stones you have.
     Each character in S is a type of stone you have.  You want to know how many of the stones you have are also jewels. The letters in J are guaranteed distinct,
-    and all characters in J and S are letters. Letters are case sensitive, so "a" is considered a different type of stone from "A".*/
+    and all characters in J and S are letters. Letters are case sensitive, so "a" is considered a different type of stone from "A". */
     private static int numJewelsInStones(String j, String s) {
         Map<Character, Integer> characters = new HashMap<>();
 
@@ -1460,9 +1460,9 @@ public class Main {
         return results;
     }
 
-    /*Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+    /* Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the non-zero elements.
     For example, given nums = [0, 1, 0, 3, 12], after calling your function, nums should be [1, 3, 12, 0, 0].
-    You must do this in-place without making a copy of the array. Minimize the total number of operations.*/
+    You must do this in-place without making a copy of the array. Minimize the total number of operations. */
     private static void moveZeroes(int[] nums) {
         int nonZeroElementCount = 0;
 
@@ -1562,11 +1562,10 @@ public class Main {
             }
         }
 
-        String[] results = list.toArray(new String[] {});
-        return results;
+        return list.toArray(new String[] {});
     }
 
-    //  Given a binary array, find the maximum number of consecutive 1s in this array.
+    // Given a binary array, find the maximum number of consecutive 1s in this array.
     private static int findMaxConsecutiveOnes(int[] nums) {
         int maxSoFar = 0;
         int currentMax = 0;
@@ -1584,10 +1583,10 @@ public class Main {
         return maxSoFar;
     }
 
-    //  Given a list of words, each word can be written as a concatenation of the Morse code of each letter.
-    //  For example, "cab" can be written as "-.-.-....-", (which is the concatenation "-.-." + "-..." + ".-").
-    //  We'll call such a concatenation, the transformation of a word.
-    //  Return the number of different transformations among all words we have.
+    // Given a list of words, each word can be written as a concatenation of the Morse code of each letter.
+    // For example, "cab" can be written as "-.-.-....-", (which is the concatenation "-.-." + "-..." + ".-").
+    // We'll call such a concatenation, the transformation of a word.
+    // Return the number of different transformations among all words we have.
     private static int uniqueMorseRepresentations(String[] words) {
         if (words.length == 0) {
             return 0;
