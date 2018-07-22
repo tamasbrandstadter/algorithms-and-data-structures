@@ -1649,7 +1649,6 @@ public class Main {
         return y == 0 ? x : gcd(y, x % y);
     }
 
-
     // Given a number n, write a function that returns true when it is a perfect number and false when it is not.
     private static boolean isPerfectNumber(long number) {
         List<Long> factors = findFactors(number);
@@ -1674,6 +1673,18 @@ public class Main {
         }
 
         return factors;
+    }
+
+    // Given a integer n, write a function that returns the n-th Fibonacci-number.
+    private static int fibonacci(int n) {
+        if (n == 0) {
+            return 0;
+        }
+        if (n == 1) {
+            return 1;
+        }
+
+        return fibonacci(n - 2) + fibonacci(n - 1);
     }
 
 }
