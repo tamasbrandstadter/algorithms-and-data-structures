@@ -99,7 +99,6 @@ public class SplayTree<T extends Comparable<T>> implements Tree<T> {
     @Override
     public Node<T> find(T data) {
         Node<T> tempNode = rootNode;
-
         while (tempNode != null) {
             if (tempNode.getData().compareTo(data) < 0) {
                 tempNode = tempNode.getRightNode();
@@ -116,17 +115,12 @@ public class SplayTree<T extends Comparable<T>> implements Tree<T> {
     }
 
     private void rotateLeft(Node<T> node) {
-
         Node<T> tempNode = node.getRightNode();
-
         if (tempNode != null) {
-
             node.setRightNode(tempNode.getLeftNode());
-
             if (tempNode.getLeftNode() != null) {
                 tempNode.getLeftNode().setParentNode(node);
             }
-
             tempNode.setParentNode(node.getParentNode());
         }
 
@@ -146,16 +140,12 @@ public class SplayTree<T extends Comparable<T>> implements Tree<T> {
     }
 
     private void rotateRight(Node<T> node) {
-
         Node<T> tempNode = node.getLeftNode();
-
         if (tempNode != null) {
             node.setLeftNode(tempNode.getRightNode());
-
             if (tempNode.getRightNode() != null) {
                 tempNode.getRightNode().setParentNode(node);
             }
-
             tempNode.setParentNode(node.getParentNode());
         }
 
