@@ -1,3 +1,5 @@
+package trees.avl;
+
 public class AVLTreeNode<T> {
     private AVLTreeNode<T> left;
     private AVLTreeNode<T> right;

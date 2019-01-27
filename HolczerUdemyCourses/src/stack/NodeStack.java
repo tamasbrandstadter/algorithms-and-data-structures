@@ -1,3 +1,7 @@
+package stack;
+
+import queue.Node;
+
 import java.util.EmptyStackException;
 
 public class NodeStack<T extends Comparable<T>> {

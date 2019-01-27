@@ -1,3 +1,5 @@
+package queue;
+
 public class Node<T extends Comparable<T>> {
     private Node<T> next;
     private T data;

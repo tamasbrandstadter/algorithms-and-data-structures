@@ -1,3 +1,5 @@
+package trees.binarysearch;
+
 public class TreeNode<T> {
     private TreeNode<T> left;
     private TreeNode<T> right;

@@ -1,3 +1,5 @@
+package queue;
+
 public class NodeQueue<T extends Comparable<T>> {
     private Node<T> first;
     private Node<T> last;

@@ -1,3 +1,5 @@
+package trees.avl;
+
 public class AVLTree<T extends Comparable<T>> implements AVL<T> {
     private AVLTreeNode<T> root;
 

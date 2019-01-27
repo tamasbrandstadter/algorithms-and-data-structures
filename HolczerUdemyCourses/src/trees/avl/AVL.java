@@ -1,3 +1,5 @@
+package trees.avl;
+
 public interface AVL<T> {
     void insert(T data);
 
