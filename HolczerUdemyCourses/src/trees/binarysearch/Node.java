@@ -1,11 +1,11 @@
 package trees.binarysearch;
 
-public class TreeNode<T> {
-    private TreeNode<T> left;
-    private TreeNode<T> right;
+public class Node<T> {
+    private Node<T> left;
+    private Node<T> right;
     private T data;
 
-    public TreeNode(T data) {
+    public Node(T data) {
         this.data = data;
     }
 
@@ -17,24 +17,24 @@ public class TreeNode<T> {
         this.data = data;
     }
 
-    public TreeNode<T> getLeft() {
+    public Node<T> getLeft() {
         return left;
     }
 
-    public void setLeft(TreeNode<T> left) {
+    public void setLeft(Node<T> left) {
         this.left = left;
     }
 
-    public TreeNode<T> getRight() {
+    public Node<T> getRight() {
         return right;
     }
 
-    public void setRight(TreeNode<T> right) {
+    public void setRight(Node<T> right) {
         this.right = right;
     }
 
     @Override
     public String toString() {
-        return "TreeNode data = " + data;
+        return "Node data = " + data;
     }
 }

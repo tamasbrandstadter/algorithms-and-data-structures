@@ -4,7 +4,7 @@ import queue.Node;
 
 import java.util.EmptyStackException;
 
-public class NodeStack<T extends Comparable<T>> {
+public class Stack<T extends Comparable<T>> {
     private Node<T> root;
     private int size;
 

@@ -1,28 +1,28 @@
 package trees.avl;
 
-public class AVLTreeNode<T> {
-    private AVLTreeNode<T> left;
-    private AVLTreeNode<T> right;
+public class Node<T> {
+    private Node<T> left;
+    private Node<T> right;
     private T data;
     private int height;
 
-    public AVLTreeNode(T data) {
+    public Node(T data) {
         this.data = data;
     }
 
-    public AVLTreeNode<T> getLeft() {
+    public Node<T> getLeft() {
         return left;
     }
 
-    public void setLeft(AVLTreeNode<T> left) {
+    public void setLeft(Node<T> left) {
         this.left = left;
     }
 
-    public AVLTreeNode<T> getRight() {
+    public Node<T> getRight() {
         return right;
     }
 
-    public void setRight(AVLTreeNode<T> right) {
+    public void setRight(Node<T> right) {
         this.right = right;
     }
 
@@ -44,7 +44,7 @@ public class AVLTreeNode<T> {
 
     @Override
     public String toString() {
-        return "AVLTreeNode data = " + data;
+        return "Node data = " + data;
     }
 
 }

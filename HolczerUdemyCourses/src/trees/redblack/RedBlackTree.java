@@ -7,7 +7,7 @@ public class RedBlackTree implements Tree {
     private Node root;
 
     public void traverse() {
-        if (this.root != null) {
+        if (root != null) {
             traverseInOrder(root);
         }
     }
@@ -94,13 +94,11 @@ public class RedBlackTree implements Tree {
         System.out.println("Rotate right on node " + node);
         Node tempLeftNode = node.getLeft();
         node.setLeft(tempLeftNode.getRight());
-
         if (node.getLeft() != null) {
             node.getLeft().setParent(node);
         }
 
         tempLeftNode.setParent(node.getParent());
-
         if (tempLeftNode.getParent() == null) {
             root = tempLeftNode;
         } else if (node == node.getParent().getLeft()) {
@@ -117,18 +115,18 @@ public class RedBlackTree implements Tree {
         System.out.println("Rotate left on node " + node);
         Node tempRightNode = node.getRight();
         node.setRight(tempRightNode.getLeft());
-
-        if (node.getRight() != null)
+        if (node.getRight() != null) {
             node.getRight().setParent(node);
+        }
 
         tempRightNode.setParent(node.getParent());
-
-        if (tempRightNode.getParent() == null)
+        if (tempRightNode.getParent() == null) {
             root = tempRightNode;
-        else if (node == node.getParent().getLeft())
+        } else if (node == node.getParent().getLeft()) {
             node.getParent().setLeft(tempRightNode);
-        else
+        } else {
             node.getParent().setRight(tempRightNode);
+        }
 
         tempRightNode.setLeft(node);
         node.setParent(tempRightNode);

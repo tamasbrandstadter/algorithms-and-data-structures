@@ -1,29 +1,29 @@
 package trees.binarysearch;
 
 public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
-    private TreeNode<T> root;
+    private Node<T> root;
 
     @Override
     public void insert(T data) {
         if (root == null) {
-            root = new TreeNode<>(data);
+            root = new Node<>(data);
         } else {
             insertToPlace(data, root);
         }
     }
 
-    private void insertToPlace(T data, TreeNode<T> node) {
+    private void insertToPlace(T data, Node<T> node) {
         if (data.compareTo(node.getData()) < 0) {
             if (node.getLeft() != null) {
                 insertToPlace(data, node.getLeft());
             } else {
-                node.setLeft(new TreeNode<>(data));
+                node.setLeft(new Node<>(data));
             }
         } else {
             if (node.getRight() != null) {
                 insertToPlace(data, node.getRight());
             } else {
-                node.setRight(new TreeNode<>(data));
+                node.setRight(new Node<>(data));
             }
         }
     }
@@ -37,7 +37,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
         }
     }
 
-    private TreeNode<T> remove(T data, TreeNode<T> node) {
+    private Node<T> remove(T data, Node<T> node) {
         if (node == null) {
             return node;
         }
@@ -55,18 +55,18 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
             //Case 2: found node with single child
             //removing right child
             if (node.getLeft() == null) {
-                TreeNode<T> temp = node.getRight();
+                Node<T> temp = node.getRight();
                 node = null;
                 return temp;
                 //removing left child
             } else if (node.getRight() == null) {
-                TreeNode<T> temp = node.getLeft();
+                Node<T> temp = node.getLeft();
                 node = null;
                 return temp;
             }
             //Case 3: found node with 2 children
             //find predecessor: rightmost(greatest) node from left subtree
-            TreeNode<T> predecessor = getPredecessor(node.getLeft());
+            Node<T> predecessor = getPredecessor(node.getLeft());
             //update reference using previous cases
             node.setData(predecessor.getData());
             node.setLeft(remove(predecessor.getData(), node.getLeft()));
@@ -74,7 +74,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
         return node;
     }
 
-    private TreeNode<T> getPredecessor(TreeNode<T> node) {
+    private Node<T> getPredecessor(Node<T> node) {
         if (node.getRight() == null) {
             return node;
         } else {
@@ -91,7 +91,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
         }
     }
 
-    private T getMin(TreeNode<T> node) {
+    private T getMin(Node<T> node) {
         if (node.getLeft() == null) {
             return node.getData();
         } else {
@@ -108,7 +108,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
         }
     }
 
-    private T getMax(TreeNode<T> node) {
+    private T getMax(Node<T> node) {
         if (node.getRight() == null) {
             return node.getData();
         } else {
@@ -125,7 +125,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
         }
     }
 
-    private void traverseInOrder(TreeNode<T> node) {
+    private void traverseInOrder(Node<T> node) {
         if (node == null) {
             return;
         }
@@ -134,7 +134,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
         traverseInOrder(node.getRight());
     }
 
-    private void traversePreOrder(TreeNode<T> node) {
+    private void traversePreOrder(Node<T> node) {
         if (node == null) {
             return;
         }
@@ -143,7 +143,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
         traversePreOrder(node.getRight());
     }
 
-    private void traversePostOrder(TreeNode<T> node) {
+    private void traversePostOrder(Node<T> node) {
         if (node == null) {
             return;
         }

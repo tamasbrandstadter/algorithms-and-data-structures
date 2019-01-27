@@ -1,7 +1,7 @@
 package trees.avl;
 
-public class AVLTree<T extends Comparable<T>> implements AVL<T> {
-    private AVLTreeNode<T> root;
+public class AVLTree<T extends Comparable<T>> implements Tree<T> {
+    private Node<T> root;
 
     @Override
     public void insert(T data) {
@@ -17,9 +17,9 @@ public class AVLTree<T extends Comparable<T>> implements AVL<T> {
         inOrderTraversal(root);
     }
 
-    private AVLTreeNode<T> insert(AVLTreeNode<T> node, T data) {
+    private Node<T> insert(Node<T> node, T data) {
         if (node == null) {
-            return new AVLTreeNode<>(data);
+            return new Node<>(data);
         }
 
         if (data.compareTo(node.getData()) < 0) {
@@ -37,7 +37,7 @@ public class AVLTree<T extends Comparable<T>> implements AVL<T> {
         return node;
     }
 
-    public AVLTreeNode<T> delete(T data) {
+    public Node<T> delete(T data) {
         if (isEmpty()) {
             throw new IllegalStateException("The tree is empty, cannot delete");
         }
@@ -45,7 +45,7 @@ public class AVLTree<T extends Comparable<T>> implements AVL<T> {
         return delete(root, data);
     }
 
-    private AVLTreeNode<T> delete(AVLTreeNode<T> node, T data) {
+    private Node<T> delete(Node<T> node, T data) {
         if (node == null) {
             return node;
         }
@@ -61,16 +61,16 @@ public class AVLTree<T extends Comparable<T>> implements AVL<T> {
             }
 
             if (node.getRight() == null) {
-                AVLTreeNode<T> left = node.getLeft();
+                Node<T> left = node.getLeft();
                 node = null;
                 return left;
             } else if (node.getLeft() == null) {
-                AVLTreeNode<T> right = node.getRight();
+                Node<T> right = node.getRight();
                 node = null;
                 return right;
             }
 
-            AVLTreeNode<T> predecessor = getPredecessor(node.getLeft());
+            Node<T> predecessor = getPredecessor(node.getLeft());
             node.setData(predecessor.getData());
             node.setLeft(delete(node.getLeft(), predecessor.getData()));
         }
@@ -81,7 +81,7 @@ public class AVLTree<T extends Comparable<T>> implements AVL<T> {
         return settleViolation(node);
     }
 
-    private AVLTreeNode<T> getPredecessor(AVLTreeNode<T> node) {
+    private Node<T> getPredecessor(Node<T> node) {
         if (node.getRight() == null) {
             return node;
         } else {
@@ -89,7 +89,7 @@ public class AVLTree<T extends Comparable<T>> implements AVL<T> {
         }
     }
 
-    private AVLTreeNode<T> settleViolation(AVLTreeNode<T> node, T data) {
+    private Node<T> settleViolation(Node<T> node, T data) {
         int balance = getBalance(node);
         // Case 1: left-left
         if (balance > 1 && data.compareTo(node.getLeft().getData()) < 0) {
@@ -116,7 +116,7 @@ public class AVLTree<T extends Comparable<T>> implements AVL<T> {
         return node;
     }
 
-    private AVLTreeNode<T> settleViolation(AVLTreeNode<T> node) {
+    private Node<T> settleViolation(Node<T> node) {
         int balance = getBalance(node);
 
         // Case 1: the tree itself is left heavy, but have to decide whether left-left or left-right
@@ -142,7 +142,7 @@ public class AVLTree<T extends Comparable<T>> implements AVL<T> {
         return node;
     }
 
-    private int getBalance(AVLTreeNode<T> node) {
+    private int getBalance(Node<T> node) {
         if (node == null) {
             return 0;
         }
@@ -150,7 +150,7 @@ public class AVLTree<T extends Comparable<T>> implements AVL<T> {
         return height(node.getLeft()) - height(node.getRight());
     }
 
-    private int height(AVLTreeNode<T> node) {
+    private int height(Node<T> node) {
         if (node == null) {
             return -1;
         }
@@ -158,9 +158,9 @@ public class AVLTree<T extends Comparable<T>> implements AVL<T> {
         return node.getHeight();
     }
 
-    private AVLTreeNode<T> rotateRight(AVLTreeNode<T> node) {
-        AVLTreeNode<T> tempLeft = node.getLeft();
-        AVLTreeNode<T> tempRightOfLeft = tempLeft.getRight();
+    private Node<T> rotateRight(Node<T> node) {
+        Node<T> tempLeft = node.getLeft();
+        Node<T> tempRightOfLeft = tempLeft.getRight();
 
         tempLeft.setRight(node);
         node.setLeft(tempRightOfLeft);
@@ -171,9 +171,9 @@ public class AVLTree<T extends Comparable<T>> implements AVL<T> {
         return tempLeft;
     }
 
-    private AVLTreeNode<T> rotateLeft(AVLTreeNode<T> node) {
-        AVLTreeNode<T> tempRight = node.getRight();
-        AVLTreeNode<T> tempLeftOfRight = tempRight.getLeft();
+    private Node<T> rotateLeft(Node<T> node) {
+        Node<T> tempRight = node.getRight();
+        Node<T> tempLeftOfRight = tempRight.getLeft();
 
         tempRight.setLeft(node);
         node.setRight(tempLeftOfRight);
@@ -188,7 +188,7 @@ public class AVLTree<T extends Comparable<T>> implements AVL<T> {
         return root == null;
     }
 
-    private void inOrderTraversal(AVLTreeNode<T> node) {
+    private void inOrderTraversal(Node<T> node) {
         if (node == null) {
             return;
         }

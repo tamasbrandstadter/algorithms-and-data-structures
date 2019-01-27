@@ -1,9 +1,9 @@
 package trees.avl;
 
-public interface AVL<T> {
+public interface Tree<T> {
     void insert(T data);
 
     void traverse();
 
-    AVLTreeNode<T> delete(T data);
+    Node<T> delete(T data);
 }
