@@ -1,4 +1,4 @@
-package trees.binarysearch;
+package tree.binarysearch;
 
 public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
     private Node<T> root;

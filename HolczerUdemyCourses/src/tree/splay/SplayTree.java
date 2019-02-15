@@ -1,4 +1,4 @@
-package trees.splay;
+package tree.splay;
 
 public class SplayTree<T extends Comparable<T>> implements Tree<T> {
     private int size;

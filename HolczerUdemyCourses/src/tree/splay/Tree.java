@@ -1,4 +1,4 @@
-package trees.splay;
+package tree.splay;
 
 public interface Tree<T extends Comparable<T>> {
     void insert(T data);

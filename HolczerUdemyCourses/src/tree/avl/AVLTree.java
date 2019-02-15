@@ -1,4 +1,4 @@
-package trees.avl;
+package tree.avl;
 
 public class AVLTree<T extends Comparable<T>> implements Tree<T> {
     private Node<T> root;

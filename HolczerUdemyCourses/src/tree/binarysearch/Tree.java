@@ -1,4 +1,4 @@
-package trees.binarysearch;
+package tree.binarysearch;
 
 public interface Tree<T> {
   void insert(T data);

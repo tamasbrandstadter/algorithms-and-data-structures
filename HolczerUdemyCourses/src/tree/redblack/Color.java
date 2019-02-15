@@ -1,4 +1,4 @@
-package trees.redblack;
+package tree.redblack;
 
 public enum Color {
     RED, BLACK

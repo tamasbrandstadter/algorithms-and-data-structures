@@ -1,4 +1,4 @@
-package trees.avl;
+package tree.avl;
 
 public interface Tree<T> {
     void insert(T data);

@@ -1,4 +1,4 @@
-package trees.redblack;
+package tree.redblack;
 
 public interface Tree {
     void traverse();

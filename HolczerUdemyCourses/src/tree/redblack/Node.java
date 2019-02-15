@@ -1,6 +1,6 @@
-package trees.redblack;
+package tree.redblack;
 
-import static trees.redblack.Color.RED;
+import static tree.redblack.Color.RED;
 
 public class Node {
     private int data;

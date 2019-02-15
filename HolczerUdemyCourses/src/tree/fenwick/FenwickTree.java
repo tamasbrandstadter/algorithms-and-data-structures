@@ -1,4 +1,4 @@
-package trees.fenwick;
+package tree.fenwick;
 
 // aka binary indexed tree
 public class FenwickTree {

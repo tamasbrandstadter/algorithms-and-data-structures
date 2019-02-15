@@ -1,19 +1,12 @@
-package trees.binarysearch;
+package tree.avl;
 
 public class Node<T> {
     private Node<T> left;
     private Node<T> right;
     private T data;
+    private int height;
 
     public Node(T data) {
-        this.data = data;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
         this.data = data;
     }
 
@@ -33,8 +26,25 @@ public class Node<T> {
         this.right = right;
     }
 
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
     @Override
     public String toString() {
         return "Node data = " + data;
     }
+
 }

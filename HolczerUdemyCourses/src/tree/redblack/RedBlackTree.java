@@ -1,7 +1,7 @@
-package trees.redblack;
+package tree.redblack;
 
-import static trees.redblack.Color.BLACK;
-import static trees.redblack.Color.RED;
+import static tree.redblack.Color.BLACK;
+import static tree.redblack.Color.RED;
 
 public class RedBlackTree implements Tree {
     private Node root;
