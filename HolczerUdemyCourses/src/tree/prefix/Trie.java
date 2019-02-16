@@ -14,11 +14,11 @@ public class Trie {
         this.root = new Node("");
     }
 
-    public void insert(String word, int value) {
+    public void insert(String key, int value) {
         Node temp = root;
 
-        for (int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i);
+        for (int i = 0; i < key.length(); i++) {
+            char c = key.charAt(i);
             int index = c - 'a';
             if (temp.getChildren()[index] == null) {
                 Node node = new Node(valueOf(c));
@@ -32,12 +32,12 @@ public class Trie {
         temp.setLeaf(true);
     }
 
-    // O(m) running time complexity - where m is the length of the word
-    public boolean search(String word) {
+    // O(m) running time complexity - where m is the length of the key
+    public boolean search(String key) {
         Node temp = root;
 
-        for (int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i);
+        for (int i = 0; i < key.length(); i++) {
+            char c = key.charAt(i);
             int index = c - 'a';
             if (temp.getChildren()[index] == null) {
                 return false;
