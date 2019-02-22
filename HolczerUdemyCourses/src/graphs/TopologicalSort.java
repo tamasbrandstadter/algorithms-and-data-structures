@@ -15,11 +15,16 @@ import java.util.Stack;
 public class TopologicalSort {
     private Stack<Vertex> stack;
 
-    public TopologicalSort() {
+    public TopologicalSort(List<Vertex> graph) {
         this.stack = new Stack<>();
+        for (Vertex v : graph) {
+            if (!v.isVisited()) {
+                dfs(v);
+            }
+        }
     }
 
-    public void dfs(Vertex vertex) {
+    private void dfs(Vertex vertex) {
         vertex.setVisited(true);
 
         for (Vertex v : vertex.getNeighbours()) {
@@ -47,14 +52,7 @@ public class TopologicalSort {
         vertex4.addNeighbour(vertex1);
         List<Vertex> graph = List.of(vertex, vertex1, vertex2, vertex3, vertex4);
 
-        TopologicalSort topologicalSort = new TopologicalSort();
-
-        for (Vertex v : graph) {
-            if (!v.isVisited()) {
-                topologicalSort.dfs(v);
-            }
-        }
-
+        TopologicalSort topologicalSort = new TopologicalSort(graph);
         for (Vertex v : topologicalSort.getStack()) {
             System.out.println(v);
         }
