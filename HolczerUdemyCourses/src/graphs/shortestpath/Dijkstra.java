@@ -5,8 +5,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
+/* - handles positive edge weights
+ * - greedy algorithm
+ * - applications: GPS, navigation, routing information protocol
+ */
 public class Dijkstra {
 
+    // running time complexity: O(V log V + E)
     public void computePaths(Vertex source) {
         source.setDistance(0);
         PriorityQueue<Vertex> queue = new PriorityQueue<>();

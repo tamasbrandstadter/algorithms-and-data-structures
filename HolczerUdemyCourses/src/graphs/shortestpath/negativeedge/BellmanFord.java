@@ -1,7 +1,15 @@
-package graphs.shortestpath;
+package graphs.shortestpath.negativeedge;
+
+import graphs.shortestpath.Edge;
+import graphs.shortestpath.Vertex;
 
 import java.util.List;
 
+/* - handles negative edge weights
+ * - relaxes all edges at the same time for V - 1 iteration
+ * - +1 iteration for detecting cycles, if the cost increases in the Vth iteration -> negative cycle
+ * - applications: arbitrage situation on FOREX, longest path problem, paralell job scheduling problem, critical path method
+ */
 public class BellmanFord {
     private List<Edge> edges;
     private List<Vertex> vertices;
@@ -11,6 +19,7 @@ public class BellmanFord {
         this.vertices = vertices;
     }
 
+    // running time complexity: O(V * E)
     public void computePaths(Vertex source) {
         source.setDistance(0);
         for (int i = 0; i < vertices.size() - 1; i++) {
@@ -28,6 +37,7 @@ public class BellmanFord {
             }
         }
 
+        // cycle detection
         for (Edge edge : edges) {
             if (edge.getU().getDistance() != Double.MAX_VALUE) {
                 if (hasCycle(edge)) {
