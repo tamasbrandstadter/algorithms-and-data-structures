@@ -1,4 +1,4 @@
-package graphs.mst.prim.eager;
+package graphs.scc.kosajarusharir;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,18 +12,20 @@ public class Graph {
         edges = new ArrayList<>();
     }
 
-    public void addVertex(Vertex v) {
-        vertices.add(v);
+    public Graph(List<Vertex> vertices, List<Edge> edges) {
+        this.vertices = vertices;
+        this.edges = edges;
     }
 
-    // create undirected edge
-    public void addEdge(Edge e) {
-        Vertex u = e.getU();
-        Vertex v = e.getV();
-        int i = vertices.indexOf(u);
-        int j = vertices.indexOf(v);
-        vertices.get(i).addEdge(new Edge(e.getWeight(), u, v));
-        vertices.get(j).addEdge(new Edge(e.getWeight(), v, u));
+    public Graph transpose() {
+        Graph transposed = new Graph();
+        List<Vertex> transposedVertices = new ArrayList<>(vertices);
+        for (Edge edge : edges) {
+            // reverse edges
+            transposedVertices.get(transposedVertices.indexOf(edge.getV())).addVertex(edge.getU());
+        }
+        transposed.setVertices(transposedVertices);
+        return transposed;
     }
 
     public List<Vertex> getVertices() {

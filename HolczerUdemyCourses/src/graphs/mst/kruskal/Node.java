@@ -1,4 +1,4 @@
-package com.company.mst.kruskal;
+package graphs.mst.kruskal;
 
 public class Node {
     private int id;

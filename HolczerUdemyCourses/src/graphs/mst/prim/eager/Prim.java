@@ -1,4 +1,4 @@
-package com.company.mst.prim.eager;
+package graphs.mst.prim.eager;
 
 import java.util.List;
 import java.util.PriorityQueue;

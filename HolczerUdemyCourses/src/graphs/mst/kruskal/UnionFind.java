@@ -1,4 +1,4 @@
-package com.company.mst.kruskal;
+package graphs.mst.kruskal;
 
 import java.util.ArrayList;
 import java.util.List;

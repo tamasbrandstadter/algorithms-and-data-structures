@@ -1,4 +1,4 @@
-package com.company.mst.prim.lazy;
+package graphs.mst.prim.lazy;
 
 import java.util.ArrayList;
 import java.util.List;

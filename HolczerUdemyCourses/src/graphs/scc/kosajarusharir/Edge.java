@@ -1,4 +1,4 @@
-package graphs.mst.prim.eager;
+package graphs.scc.kosajarusharir;
 
 public class Edge {
     private double weight;

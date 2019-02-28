@@ -1,4 +1,4 @@
-package com.company.mst.kruskal;
+package graphs.mst.kruskal;
 
 public class Edge implements Comparable<Edge> {
     private double weight;

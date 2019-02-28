@@ -1,4 +1,4 @@
-package com.company.mst.prim.lazy;
+package graphs.mst.prim.lazy;
 
 public class Edge implements Comparable<Edge> {
     private double weight;
