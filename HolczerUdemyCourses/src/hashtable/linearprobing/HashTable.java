@@ -120,7 +120,7 @@ public class HashTable<Key, Value> {
         // have to rehash the table entries because the hash function relies heavily on the
         // size: ~ key.hashCode() % sizeOfTable
         // so it is a O(n) operation --> we should make as few resize operation as possible
-        for (int i = 0; i < capacity; ++i) {
+        for (int i = 0; i < capacity; i++) {
             if (keys[i] != null) {
                 newTable.put(keys[i], values[i]);
             }

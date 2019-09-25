@@ -28,7 +28,7 @@ public class FenwickTree {
     // create the tree from the input array
     // O(n log n) running time complexity
     private void construct(int[] nums) {
-        for (int index = 1; index <= nums.length; ++index) {
+        for (int index = 1; index <= nums.length; index++) {
             update(index, nums[index - 1]);
         }
     }
